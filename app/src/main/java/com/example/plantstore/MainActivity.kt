@@ -4,18 +4,24 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.example.plantstore.plantstore.Screen.Main.MainScreen
-import com.example.plantstore.plantstore.Screen.WelcomeScreen
-import com.example.plantstore.ui.theme.PlantStoreTheme
+import androidx.activity.viewModels
+import androidx.navigation.compose.rememberNavController
+import com.example.plantstore.plantstore.ViewModel.MainViewModel
+import com.example.plantstore.plantstore.navigation.NavGraph
 
 class MainActivity : ComponentActivity() {
+
+    private val viewModel = MainViewModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            PlantStoreTheme {
-                WelcomeScreen()
-            }
+            val nav = rememberNavController()
+            NavGraph(
+                navController = nav,
+                viewModel = viewModel
+            )
         }
     }
 }
