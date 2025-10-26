@@ -12,6 +12,14 @@ class MainViewModel {
         return repository.loadCategory()
     }
 
+    fun loadPopularPlant(): LiveData<MutableList<PlantModel>> {
+        return repository.loadPopularPlant()
+    }
+
+    fun loadNewPlant(): LiveData<MutableList<PlantModel>> {
+        return repository.loadNewPlant()
+    }
+
     fun loadFiltered(id: String): LiveData<MutableList<PlantModel>> {
         return repository.loadFiltered(id)
     }

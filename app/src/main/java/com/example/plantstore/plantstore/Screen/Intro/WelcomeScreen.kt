@@ -1,4 +1,4 @@
-package com.example.plantstore.plantstore.Screen
+package com.example.plantstore.plantstore.Screen.Intro
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -34,7 +34,9 @@ import com.example.plantstore.R
 import kotlinx.coroutines.delay
 
 @Composable
-fun WelcomeScreen() {
+fun WelcomeScreen(
+    onStartClick: () -> Unit
+) {
     val images = listOf(
         R.drawable.flower_1,
         R.drawable.flower_2,
@@ -120,7 +122,7 @@ fun WelcomeScreen() {
             }
 
             Button(
-                onClick = { },
+                onClick = onStartClick,
                 border = BorderStroke(2.dp, Color.Black),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color.White,
