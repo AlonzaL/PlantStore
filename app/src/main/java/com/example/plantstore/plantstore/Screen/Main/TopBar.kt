@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -49,14 +50,18 @@ fun TopBar() {
         ) {
             IconButton(onClick = {}) {
                 Icon(
-                    painter = painterResource(id = R.drawable.btn_2),
-                    contentDescription = ""
+                    painter = painterResource(id = R.drawable.cart),
+                    contentDescription = "",
+                    modifier = Modifier
+                        .size(25.dp)
                 )
             }
             IconButton(onClick = {}) {
                 Icon(
-                    painter = painterResource(id = R.drawable.cart),
-                    contentDescription = ""
+                    painter = painterResource(id = R.drawable.setting),
+                    contentDescription = "",
+                    modifier = Modifier
+                        .size(25.dp)
                 )
             }
         }

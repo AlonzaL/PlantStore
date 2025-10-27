@@ -12,7 +12,7 @@ data class PlantModel(
     var HeightFlower: String = "",
     var PotSize: String = "",
     var PotType: String = "",
-    var ImagePath: String = "",
+    var ImagePath: List<String> = emptyList<String>(),
     var isFavorite: Boolean = false,
     var PopularPlant: Boolean = false,
     var NewPlant: Boolean = false,

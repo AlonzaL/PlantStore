@@ -19,7 +19,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             val nav = rememberNavController()
             NavGraph(
-                navController = nav,
                 viewModel = viewModel
             )
         }

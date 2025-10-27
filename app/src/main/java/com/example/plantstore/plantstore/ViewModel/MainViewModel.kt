@@ -1,11 +1,12 @@
 package com.example.plantstore.plantstore.ViewModel
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.example.plantstore.plantstore.Domain.CategoryModel
 import com.example.plantstore.plantstore.Domain.PlantModel
 import com.example.plantstore.plantstore.Repository.MainRepository
 
-class MainViewModel {
+class MainViewModel: ViewModel() {
     private val repository = MainRepository()
 
     fun loadCategory(): LiveData<MutableList<CategoryModel>> {

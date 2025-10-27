@@ -2,8 +2,6 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    id("kotlin-kapt")
-    id("dagger.hilt.android.plugin")
     id("com.google.gms.google-services")
 }
 
@@ -74,11 +72,9 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
 
-    // Hilt
-    implementation("com.google.dagger:hilt-android:2.48")
-    implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
+
     implementation(libs.firebase.ai)
-    kapt("com.google.dagger:hilt-compiler:2.48")
+
 
     // Coil for image loading
     implementation("io.coil-kt:coil-compose:2.5.0")
@@ -95,7 +91,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    implementation("io.coil-kt:coil-compose:2.2.2")
     implementation("com.google.accompanist:accompanist-pager-indicators:0.28.0")
     implementation("com.google.accompanist:accompanist-pager:0.28.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")

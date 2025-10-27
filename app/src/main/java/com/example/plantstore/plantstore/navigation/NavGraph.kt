@@ -1,19 +1,23 @@
 package com.example.plantstore.plantstore.navigation
 
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
-import androidx.navigation.NavController
-import androidx.navigation.NavHostController
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.plantstore.plantstore.Domain.PlantModel
+import com.example.plantstore.plantstore.Screen.Detail.DetailScreen
 import com.example.plantstore.plantstore.Screen.Intro.WelcomeScreen
 import com.example.plantstore.plantstore.Screen.Main.MainScreen
 import com.example.plantstore.plantstore.ViewModel.MainViewModel
 
 @Composable
 fun NavGraph(
-    navController: NavHostController,
     viewModel: MainViewModel
 ) {
     val navController = rememberNavController()
@@ -43,6 +47,31 @@ fun NavGraph(
                 }
             )
         }
+
+        composable(Screen.Detail.route) {
+            val prevEntry = remember(navController) {
+                navController.previousBackStackEntry
+            }
+            val plant = remember(prevEntry) {
+                prevEntry?.savedStateHandle?.get<PlantModel>("plant")
+            }
+
+            LaunchedEffect(prevEntry, plant) {
+                if (plant == null) {
+                    navController.popBackStack()
+                } else {
+                    prevEntry?.savedStateHandle?.remove<PlantModel>("plant")
+                }
+            }
+            if (plant != null) {
+                DetailScreen(
+                    item = plant,
+                    onBack = { navController.popBackStack() }
+                )
+            } else {
+                Spacer(modifier = Modifier.height(1.dp))
+            }
+        }
     }
 
 }
@@ -50,7 +79,7 @@ fun NavGraph(
 sealed class Screen(
     val route: String
 ) {
-    data object Intro:Screen("intro")
-    data object Home: Screen("home")
-    data object Detail: Screen("detail")
+    data object Intro : Screen("intro")
+    data object Home : Screen("home")
+    data object Detail : Screen("detail")
 }
