@@ -30,8 +30,6 @@ fun MainScreen(
     val newPlant = remember { mutableStateListOf<PlantModel>() }
 
     var showCategoryLoading by remember { mutableStateOf(true) }
-    var showPopularPlantLoading by remember { mutableStateOf(true) }
-    var showNewPlantLoading by remember { mutableStateOf(true) }
 
     LaunchedEffect(Unit) {
         viewModel.loadCategory().observeForever {
@@ -45,7 +43,6 @@ fun MainScreen(
         viewModel.loadPopularPlant().observeForever {
             popularPlant.clear()
             popularPlant.addAll(it)
-            showPopularPlantLoading = false
         }
     }
 
@@ -53,7 +50,6 @@ fun MainScreen(
         viewModel.loadNewPlant().observeForever {
             newPlant.clear()
             newPlant.addAll(it)
-            showNewPlantLoading = false
         }
     }
 

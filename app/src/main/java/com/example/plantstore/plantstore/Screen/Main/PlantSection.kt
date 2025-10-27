@@ -117,7 +117,7 @@ fun PlantSection(
                     horizontal = 16.dp
                 )
             ) {
-                items(items) { item ->
+                items(items.take(3)) { item ->
                     PlantCard(
                         item = item,
                         onClick = { onClick(item) }
