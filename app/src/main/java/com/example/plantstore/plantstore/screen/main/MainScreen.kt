@@ -1,4 +1,4 @@
-package com.example.plantstore.plantstore.Screen.Main
+package com.example.plantstore.plantstore.screen.main
 
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Scaffold
@@ -12,9 +12,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.plantstore.plantstore.Domain.CategoryModel
-import com.example.plantstore.plantstore.Domain.PlantModel
-import com.example.plantstore.plantstore.ViewModel.MainViewModel
+import com.example.plantstore.plantstore.domain.CategoryModel
+import com.example.plantstore.plantstore.domain.PlantModel
+import com.example.plantstore.plantstore.viewModel.MainViewModel
 
 @Composable
 fun MainScreen(

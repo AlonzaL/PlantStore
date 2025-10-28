@@ -5,6 +5,6 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".plantstore.Screen.ItemsList.ItemsListActivity">
+    tools:context=".plantstore.screen.ItemsList.ItemsListActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

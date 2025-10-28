@@ -1,4 +1,4 @@
-package com.example.plantstore.plantstore.Screen.Main
+package com.example.plantstore.plantstore.screen.main
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PlantStore">
         <activity
-            android:name=".plantstore.Screen.ItemsList.ItemsListActivity"
+            android:name=".plantstore.screen.ItemsList.ItemsListActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

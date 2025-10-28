@@ -1,4 +1,4 @@
-package com.example.plantstore.plantstore.Screen.Intro
+package com.example.plantstore.plantstore.screen.intro
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image

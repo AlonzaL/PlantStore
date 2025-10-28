@@ -1,11 +1,9 @@
-package com.example.plantstore.plantstore.Screen.Main
+package com.example.plantstore.plantstore.screen.main
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -32,7 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.plantstore.R
-import com.example.plantstore.plantstore.Domain.PlantModel
+import com.example.plantstore.plantstore.domain.PlantModel
 
 @Composable
 fun PlantCard(
@@ -68,7 +66,7 @@ fun PlantCard(
                 contentAlignment = Alignment.Center
             ) {
                 AsyncImage(
-                    model = item.ImagePath[0],
+                    model = item.ImagePath,
                     contentDescription = null,
                     modifier = Modifier
                         .fillMaxSize(),
@@ -86,7 +84,7 @@ fun PlantCard(
             Spacer(modifier = Modifier.height(4.dp))
 
             Text(
-                text = "$ ${(item.Price).toString()}",
+                text = "$ ${(item.Price)}",
                 color = colorResource(R.color.price),
                 fontSize = 16.sp,
                 maxLines = 2

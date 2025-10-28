@@ -1,4 +1,4 @@
-package com.example.plantstore.plantstore.Screen.Main
+package com.example.plantstore.plantstore.screen.main
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.plantstore.R
@@ -37,19 +38,21 @@ fun SectionHeader(
                 .weight(1f)
                 .padding(start = 16.dp)
         )
-        if(onSeeAll!=null) {
+        if (onSeeAll != null) {
             TextButton(
                 onClick = onSeeAll
             ) {
                 Text(
-                    text = "See all",
-                    color = colorResource(R.color.black)
+                    text = "see all",
+                    color = colorResource(R.color.black),
+                    textDecoration = TextDecoration.Underline
                 )
             }
         } else {
             Text(
                 text = "see all",
-                color = colorResource(R.color.black)
+                color = colorResource(R.color.black),
+                textDecoration = TextDecoration.Underline
             )
         }
     }

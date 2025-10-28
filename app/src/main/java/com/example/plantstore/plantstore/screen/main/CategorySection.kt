@@ -1,4 +1,4 @@
-package com.example.plantstore.plantstore.Screen.Main
+package com.example.plantstore.plantstore.screen.main
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -18,7 +18,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.plantstore.plantstore.Domain.CategoryModel
+import com.example.plantstore.plantstore.domain.CategoryModel
 
 @Composable
 fun CategorySection(

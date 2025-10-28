@@ -1,10 +1,10 @@
-package com.example.plantstore.plantstore.ViewModel
+package com.example.plantstore.plantstore.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.example.plantstore.plantstore.Domain.CategoryModel
-import com.example.plantstore.plantstore.Domain.PlantModel
-import com.example.plantstore.plantstore.Repository.MainRepository
+import com.example.plantstore.plantstore.domain.CategoryModel
+import com.example.plantstore.plantstore.domain.PlantModel
+import com.example.plantstore.plantstore.repository.MainRepository
 
 class MainViewModel: ViewModel() {
     private val repository = MainRepository()

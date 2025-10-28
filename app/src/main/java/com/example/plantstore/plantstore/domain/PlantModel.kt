@@ -1,4 +1,4 @@
-package com.example.plantstore.plantstore.Domain
+package com.example.plantstore.plantstore.domain
 
 import java.io.Serializable
 

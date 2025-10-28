@@ -1,10 +1,10 @@
-package com.example.plantstore.plantstore.Repository
+package com.example.plantstore.plantstore.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
-import com.example.plantstore.plantstore.Domain.CategoryModel
-import com.example.plantstore.plantstore.Domain.PlantModel
+import com.example.plantstore.plantstore.domain.CategoryModel
+import com.example.plantstore.plantstore.domain.PlantModel
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase

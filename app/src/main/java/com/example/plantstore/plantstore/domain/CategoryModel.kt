@@ -1,4 +1,4 @@
-package com.example.plantstore.plantstore.Domain
+package com.example.plantstore.plantstore.domain
 
 data class CategoryModel(
     var Id: Int = 0,

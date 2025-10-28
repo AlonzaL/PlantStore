@@ -10,11 +10,11 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.plantstore.plantstore.Domain.PlantModel
-import com.example.plantstore.plantstore.Screen.Detail.DetailScreen
-import com.example.plantstore.plantstore.Screen.Intro.WelcomeScreen
-import com.example.plantstore.plantstore.Screen.Main.MainScreen
-import com.example.plantstore.plantstore.ViewModel.MainViewModel
+import com.example.plantstore.plantstore.domain.PlantModel
+import com.example.plantstore.plantstore.screen.detail.DetailScreen
+import com.example.plantstore.plantstore.screen.intro.WelcomeScreen
+import com.example.plantstore.plantstore.screen.main.MainScreen
+import com.example.plantstore.plantstore.viewModel.MainViewModel
 
 @Composable
 fun NavGraph(

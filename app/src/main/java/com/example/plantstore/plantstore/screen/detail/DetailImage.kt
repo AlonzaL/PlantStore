@@ -1,12 +1,10 @@
-package com.example.plantstore.plantstore.Screen.Detail
+package com.example.plantstore.plantstore.screen.detail
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
@@ -16,7 +14,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,22 +21,26 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.plantstore.R
+import com.example.plantstore.plantstore.domain.PlantModel
+import com.example.plantstore.plantstore.helper.previewPlant
 
 @Composable
 fun DetailImage(
-    imagePath: String
+    imagePath: PlantModel
 ) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .background(
                 color = colorResource(R.color.white)
+            )
+            .padding(
+                start = 40.dp,
+                end = 40.dp
             )
     ) {
         Box(
@@ -63,12 +64,12 @@ fun DetailImage(
         }
 
         AsyncImage(
-            model = imagePath,
+            model = imagePath.ImagePath,
             contentDescription = null,
             contentScale = ContentScale.Fit,
             modifier = Modifier
-                .height(90.dp)
-                .offset(y = (40).dp)
+                .height(50.dp)
+                .offset(y = (20).dp)
         )
 
         Row(
@@ -107,6 +108,6 @@ fun DetailImage(
 @Preview
 fun DetailImagePreview() {
     DetailImage(
-        imagePath = ""
+        imagePath = previewPlant
     )
 }
