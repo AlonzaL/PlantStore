@@ -42,8 +42,8 @@ fun NavGraph(
             MainScreen(
                 viewModel = viewModel,
                 onOpenDetail = {
-//                    plantModel ->
-//                    navController.navDetail(plantModel)
+                    plantModel ->
+                    navController.navDetail(plantModel)
                 }
             )
         }
