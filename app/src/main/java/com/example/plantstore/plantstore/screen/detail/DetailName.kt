@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -30,6 +31,13 @@ fun DetailName(
 ) {
     val categories = remember { mutableStateListOf<CategoryModel>() }
 
+    LaunchedEffect(Unit) {
+        viewModel.loadCategory().observeForever {
+            categories.clear()
+            categories.addAll(it)
+        }
+    }
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -50,7 +58,7 @@ fun DetailName(
             onClick = { }
         ) {
             Text(
-                text = "${categories.firstOrNull { it.Id == item.CategoryId.toInt() }}",
+                text = "${categories.firstOrNull { it.Id == item.CategoryId }}",
                 textDecoration = TextDecoration.Underline
             )
         }

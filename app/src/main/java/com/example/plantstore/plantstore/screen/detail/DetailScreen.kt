@@ -39,7 +39,7 @@ fun DetailScreen(
 
             item {
                 DetailImage(
-                    imagePath = item
+                    imagePath = item.ImagePath[1]
                 )
             }
 

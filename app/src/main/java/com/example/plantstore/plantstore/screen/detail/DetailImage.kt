@@ -30,7 +30,7 @@ import com.example.plantstore.plantstore.helper.previewPlant
 
 @Composable
 fun DetailImage(
-    imagePath: PlantModel
+    imagePath: String
 ) {
     Column(
         modifier = Modifier
@@ -64,7 +64,7 @@ fun DetailImage(
         }
 
         AsyncImage(
-            model = imagePath.ImagePath,
+            model = imagePath,
             contentDescription = null,
             contentScale = ContentScale.Fit,
             modifier = Modifier
@@ -108,6 +108,6 @@ fun DetailImage(
 @Preview
 fun DetailImagePreview() {
     DetailImage(
-        imagePath = previewPlant
+        imagePath = "previewPlant"
     )
 }

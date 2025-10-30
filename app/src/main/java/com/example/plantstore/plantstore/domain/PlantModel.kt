@@ -5,7 +5,7 @@ import java.io.Serializable
 data class PlantModel(
     var Id: Int = 0,
     var Title: String = "",
-    var CategoryId: String = "",
+    var CategoryId: Int = 0,
     var Description: String = "",
     var Price: Double = 0.0,
     var PriceId: Int = 0,

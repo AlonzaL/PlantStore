@@ -5,7 +5,7 @@ import com.example.plantstore.plantstore.domain.PlantModel
 val previewPlant = PlantModel(
     Id = 1,
     Title = "Plant",
-    CategoryId = "1",
+    CategoryId = 0,
     Description = "la la la",
     Price = 23.5,
     PriceId = 1,

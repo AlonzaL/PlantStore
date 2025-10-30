@@ -66,7 +66,7 @@ fun PlantCard(
                 contentAlignment = Alignment.Center
             ) {
                 AsyncImage(
-                    model = item.ImagePath,
+                    model = item.ImagePath[0],
                     contentDescription = null,
                     modifier = Modifier
                         .fillMaxSize(),

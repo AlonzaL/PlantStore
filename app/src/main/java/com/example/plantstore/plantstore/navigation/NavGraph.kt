@@ -11,6 +11,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.plantstore.plantstore.domain.PlantModel
+import com.example.plantstore.plantstore.screen.auth.AuthScreen
 import com.example.plantstore.plantstore.screen.detail.DetailScreen
 import com.example.plantstore.plantstore.screen.intro.WelcomeScreen
 import com.example.plantstore.plantstore.screen.main.MainScreen
@@ -26,10 +27,25 @@ fun NavGraph(
         navController = navController,
         startDestination = Screen.Intro.route
     ) {
-        composable(Screen.Intro.route) {
-            WelcomeScreen(
+        composable(Screen.Auth.route) {
+            AuthScreen(
                 onStartClick = {
                     navController.navigate(Screen.Home.route) {
+                        popUpTo(Screen.Intro.route) {
+                            inclusive = true
+                        }
+                    }
+                },
+                onBack = {
+                    navController.navigate(Screen.Intro.route)
+                }
+            )
+        }
+
+        composable(Screen.Intro.route) {
+            WelcomeScreen(
+                onLogIn = {
+                    navController.navigate(Screen.Auth.route) {
                         popUpTo(Screen.Intro.route) {
                             inclusive = true
                         }
@@ -82,4 +98,6 @@ sealed class Screen(
     data object Intro : Screen("intro")
     data object Home : Screen("home")
     data object Detail : Screen("detail")
+
+    data object Auth : Screen("auth")
 }

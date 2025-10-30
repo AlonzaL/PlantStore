@@ -3,14 +3,17 @@ package com.example.plantstore.plantstore.screen.intro
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -25,9 +28,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.plantstore.R
@@ -35,7 +40,7 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun WelcomeScreen(
-    onStartClick: () -> Unit
+    onLogIn: () -> Unit
 ) {
     val images = listOf(
         R.drawable.flower_1,
@@ -56,31 +61,27 @@ fun WelcomeScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(top = 42.dp)
+            //.padding(top = 42.dp)
+            .background(
+                color = Color.White
+            )
     ) {
         Image(
             painter = painterResource(R.drawable.bg_welcomescreen),
             contentDescription = "bk",
             modifier = Modifier
                 .size(670.dp)
-                .padding(top = 42.dp)
+                .padding(top = 30.dp)
             ,
             contentScale = ContentScale.Crop
         )
 
         Column(
             modifier = Modifier
-                .fillMaxSize(),
+                .fillMaxSize()
+                .padding(top = 90.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(
-                text = "Skip",
-                fontSize = 16.sp,
-                modifier = Modifier
-                    .align(Alignment.End)
-                    .padding(bottom = 75.dp, end = 40.dp)
-            )
-
             // Картинка
             Image(
                 painter = painterResource(id = images[currentIndex]),
@@ -122,7 +123,7 @@ fun WelcomeScreen(
             }
 
             Button(
-                onClick = onStartClick,
+                onClick = { },
                 border = BorderStroke(2.dp, Color.Black),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color.White,
@@ -130,11 +131,32 @@ fun WelcomeScreen(
                 )
             ) {
                 Text(
-                    text = "Start Shopping",
+                    text = "Create account",
                     fontWeight = FontWeight.Bold,
                     fontSize = 14.sp
                 )
             }
+            Spacer(modifier = Modifier.height(5.dp))
+            Row {
+                Text(
+                    text = "Have an account?"
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(
+                    text = "Log in",
+                    color = colorResource(R.color.price),
+                    modifier = Modifier
+                        .clickable { onLogIn() }
+                )
+            }
         }
     }
+}
+
+@Preview
+@Composable
+fun WelcomeScreenPreview() {
+    WelcomeScreen(
+        onLogIn = {}
+    )
 }

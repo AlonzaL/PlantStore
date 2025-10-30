@@ -13,4 +13,6 @@
     <color name="fav">#FF5D5D</color>
     <color name="no_fav">#ADADAD</color>
     <color name="descr">#555555</color>
+    <color name="authBg">#F1F1F1</color>
+    <color name="auth">#777777</color>
 </resources>
