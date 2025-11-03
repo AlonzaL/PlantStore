@@ -19,7 +19,9 @@ import com.example.plantstore.plantstore.viewModel.MainViewModel
 @Composable
 fun MainScreen(
     viewModel: MainViewModel,
-    onOpenDetail: (PlantModel) -> Unit
+    onOpenDetail: (PlantModel) -> Unit,
+    onCartClick: () -> Unit,
+    onSettingsClick: () -> Unit
 ) {
     val categories = remember { mutableStateListOf<CategoryModel>() }
     val popularPlant = remember { mutableStateListOf<PlantModel>() }
@@ -55,7 +57,10 @@ fun MainScreen(
         LazyColumn(
             contentPadding = paddingValues
         ) {
-            item { TopBar() }
+            item { TopBar(
+                onCartClick = {},
+                onSettingsClick = {}
+            ) }
             item {
                 CategorySection(
                     categories = categories,
@@ -97,6 +102,8 @@ fun MainScreenPreview() {
     val viewModel: MainViewModel = viewModel()
     MainScreen(
         viewModel = viewModel,
-        onOpenDetail = {}
+        onOpenDetail = {},
+        onCartClick = {},
+        onSettingsClick = {}
     )
 }

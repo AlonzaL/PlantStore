@@ -196,13 +196,3 @@ fun AuthLogInScreen(
         Spacer(modifier = Modifier.height(32.dp))
     }
 }
-
-
-//@Preview
-//@Composable
-//fun AuthLogInScreenPreview() {
-//    AuthLogInScreen(
-//        onStartClick = {},
-//        onBack = {}
-//    )
-//}

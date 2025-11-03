@@ -312,13 +312,3 @@ fun AuthSingInScreen(
         Spacer(modifier = Modifier.height(32.dp))
     }
 }
-
-
-//@Preview
-//@Composable
-//fun AuthSingInScreenPreview() {
-//    AuthSingInScreen(
-//        onStartClick = {},
-//        onBack = {}
-//    )
-//}

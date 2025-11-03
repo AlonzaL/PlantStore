@@ -13,4 +13,12 @@ class AuthViewModel: ViewModel() {
     fun logIn(email: String, password: String){
         return repository.logIn(email, password)
     }
+
+    fun signOut() {
+        return repository.signOut()
+    }
+
+    fun deleteAccount(email: String, password: String){
+        return repository.deleteAccount(email, password)
+    }
 }

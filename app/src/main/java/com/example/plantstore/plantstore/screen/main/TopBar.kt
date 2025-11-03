@@ -21,7 +21,10 @@ import com.example.plantstore.R
 
 @Composable
 @Preview
-fun TopBar() {
+fun TopBar(
+    onCartClick: () -> Unit,
+    onSettingsClick: () -> Unit
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -48,7 +51,7 @@ fun TopBar() {
         Row(
             //horizontalArrangement = Arrangement.spacedBy(5.dp)
         ) {
-            IconButton(onClick = {}) {
+            IconButton(onClick = onCartClick) {
                 Icon(
                     painter = painterResource(id = R.drawable.cart),
                     contentDescription = "",
@@ -56,7 +59,7 @@ fun TopBar() {
                         .size(25.dp)
                 )
             }
-            IconButton(onClick = {}) {
+            IconButton(onClick = onSettingsClick) {
                 Icon(
                     painter = painterResource(id = R.drawable.setting),
                     contentDescription = "",

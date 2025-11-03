@@ -7,6 +7,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -16,6 +17,7 @@ import com.example.plantstore.plantstore.screen.auth.AuthSingInScreen
 import com.example.plantstore.plantstore.screen.detail.DetailScreen
 import com.example.plantstore.plantstore.screen.intro.WelcomeScreen
 import com.example.plantstore.plantstore.screen.main.MainScreen
+import com.example.plantstore.plantstore.screen.settings.SettingsScreen
 import com.example.plantstore.plantstore.viewModel.AuthViewModel
 import com.example.plantstore.plantstore.viewModel.MainViewModel
 
@@ -30,6 +32,25 @@ fun NavGraph(
         navController = navController,
         startDestination = Screen.Intro.route
     ) {
+        composable(Screen.Intro.route) {
+            WelcomeScreen(
+                onLogIn = {
+                    navController.navigate(Screen.AuthLogIn.route) {
+                        popUpTo(Screen.Intro.route) {
+                            inclusive = true
+                        }
+                    }
+                },
+                onSignUp = {
+                    navController.navigate(Screen.AuthSignUp.route) {
+                        popUpTo(Screen.Intro.route) {
+                            inclusive = true
+                        }
+                    }
+                }
+            )
+        }
+
         composable(Screen.AuthLogIn.route) {
             AuthLogInScreen(
                 onStartClick = {
@@ -62,32 +83,23 @@ fun NavGraph(
             )
         }
 
-        composable(Screen.Intro.route) {
-            WelcomeScreen(
-                onLogIn = {
-                    navController.navigate(Screen.AuthLogIn.route) {
-                        popUpTo(Screen.Intro.route) {
-                            inclusive = true
-                        }
-                    }
-                },
-                onSignUp = {
-                    navController.navigate(Screen.AuthSignUp.route) {
-                        popUpTo(Screen.Intro.route) {
-                            inclusive = true
-                        }
-                    }
-                }
-            )
-        }
-
         composable(Screen.Home.route) {
             MainScreen(
                 viewModel = mainViewModel,
                 onOpenDetail = {
                     plantModel ->
                     navController.navDetail(plantModel)
+                },
+                onCartClick = {},
+                onSettingsClick = {
+                    navController.navigate(Screen.Settings.route)
                 }
+            )
+        }
+
+        composable(Screen.Settings.route) {
+            SettingsScreen(
+                viewModel = authViewModel
             )
         }
 
@@ -128,4 +140,6 @@ sealed class Screen(
 
     data object AuthLogIn : Screen("authLogIn")
     data object AuthSignUp : Screen("authSingIn")
+
+    data object Settings : Screen("settings")
 }
