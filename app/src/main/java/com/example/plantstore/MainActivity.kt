@@ -7,10 +7,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.navigation.compose.rememberNavController
 import com.example.plantstore.plantstore.viewModel.MainViewModel
 import com.example.plantstore.plantstore.navigation.NavGraph
+import com.example.plantstore.plantstore.viewModel.AuthViewModel
 
 class MainActivity : ComponentActivity() {
 
-    private val viewModel = MainViewModel()
+    private val mainViewModel = MainViewModel()
+    private val authViewModel = AuthViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,7 +20,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             val nav = rememberNavController()
             NavGraph(
-                viewModel = viewModel
+                mainViewModel = mainViewModel,
+                authViewModel = authViewModel
             )
         }
     }

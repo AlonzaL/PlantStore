@@ -16,11 +16,13 @@ import com.example.plantstore.plantstore.screen.auth.AuthSingInScreen
 import com.example.plantstore.plantstore.screen.detail.DetailScreen
 import com.example.plantstore.plantstore.screen.intro.WelcomeScreen
 import com.example.plantstore.plantstore.screen.main.MainScreen
+import com.example.plantstore.plantstore.viewModel.AuthViewModel
 import com.example.plantstore.plantstore.viewModel.MainViewModel
 
 @Composable
 fun NavGraph(
-    viewModel: MainViewModel
+    mainViewModel: MainViewModel,
+    authViewModel: AuthViewModel
 ) {
     val navController = rememberNavController()
 
@@ -39,11 +41,12 @@ fun NavGraph(
                 },
                 onBack = {
                     navController.navigate(Screen.Intro.route)
-                }
+                },
+                viewModel = authViewModel
             )
         }
 
-        composable(Screen.AuthSingIn.route) {
+        composable(Screen.AuthSignUp.route) {
             AuthSingInScreen(
                 onStartClick = {
                     navController.navigate(Screen.Home.route) {
@@ -54,7 +57,8 @@ fun NavGraph(
                 },
                 onBack = {
                     navController.navigate(Screen.Intro.route)
-                }
+                },
+                viewModel = authViewModel
             )
         }
 
@@ -67,8 +71,8 @@ fun NavGraph(
                         }
                     }
                 },
-                onSingIn = {
-                    navController.navigate(Screen.AuthSingIn.route) {
+                onSignUp = {
+                    navController.navigate(Screen.AuthSignUp.route) {
                         popUpTo(Screen.Intro.route) {
                             inclusive = true
                         }
@@ -79,7 +83,7 @@ fun NavGraph(
 
         composable(Screen.Home.route) {
             MainScreen(
-                viewModel = viewModel,
+                viewModel = mainViewModel,
                 onOpenDetail = {
                     plantModel ->
                     navController.navDetail(plantModel)
@@ -123,5 +127,5 @@ sealed class Screen(
     data object Detail : Screen("detail")
 
     data object AuthLogIn : Screen("authLogIn")
-    data object AuthSingIn : Screen("authSingIn")
+    data object AuthSignUp : Screen("authSingIn")
 }

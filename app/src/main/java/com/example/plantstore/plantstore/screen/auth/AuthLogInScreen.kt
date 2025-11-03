@@ -42,9 +42,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.plantstore.R
+import com.example.plantstore.plantstore.viewModel.AuthViewModel
 
 @Composable
 fun AuthLogInScreen(
+    viewModel: AuthViewModel,
     onStartClick: () -> Unit,
     onBack: () -> Unit
 ) {
@@ -170,7 +172,7 @@ fun AuthLogInScreen(
             Spacer(modifier = Modifier.height(20.dp))
 
             Button(
-                onClick = onStartClick,
+                onClick = { viewModel.logIn(email, password) },
                 modifier = Modifier
                     .padding(horizontal = 12.dp, vertical = 8.dp),
                 colors = ButtonDefaults.buttonColors(
@@ -196,11 +198,11 @@ fun AuthLogInScreen(
 }
 
 
-@Preview
-@Composable
-fun AuthLogInScreenPreview() {
-    AuthLogInScreen(
-        onStartClick = {},
-        onBack = {}
-    )
-}
+//@Preview
+//@Composable
+//fun AuthLogInScreenPreview() {
+//    AuthLogInScreen(
+//        onStartClick = {},
+//        onBack = {}
+//    )
+//}

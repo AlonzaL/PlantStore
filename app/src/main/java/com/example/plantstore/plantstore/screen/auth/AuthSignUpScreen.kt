@@ -11,15 +11,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Icon
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
@@ -41,11 +37,12 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.plantstore.R
+import com.example.plantstore.plantstore.viewModel.AuthViewModel
 
 @Composable
 fun AuthSingInScreen(
+    viewModel: AuthViewModel,
     onStartClick: () -> Unit,
     onBack: () -> Unit
 ) {
@@ -55,7 +52,6 @@ fun AuthSingInScreen(
     var password by remember { mutableStateOf("") }
     var passwordRepeat by remember { mutableStateOf("") }
     var isPasswordVisible by remember { mutableStateOf(false) }
-
     var passwordsMatch = (password == passwordRepeat)
 
     Box(
@@ -79,7 +75,7 @@ fun AuthSingInScreen(
 
 
         AuthHeader(
-            title = "Sing in",
+            title = "Sign up",
             onBack = onBack
         )
 
@@ -288,7 +284,7 @@ fun AuthSingInScreen(
 
             Button(
                 onClick = {
-                    if (passwordsMatch) onStartClick
+                    if (passwordsMatch) viewModel.signUp(email,password)
                 },
                 modifier = Modifier
                     .padding(horizontal = 12.dp, vertical = 8.dp),
@@ -318,11 +314,11 @@ fun AuthSingInScreen(
 }
 
 
-@Preview
-@Composable
-fun AuthSingInScreenPreview() {
-    AuthSingInScreen(
-        onStartClick = {},
-        onBack = {}
-    )
-}
+//@Preview
+//@Composable
+//fun AuthSingInScreenPreview() {
+//    AuthSingInScreen(
+//        onStartClick = {},
+//        onBack = {}
+//    )
+//}

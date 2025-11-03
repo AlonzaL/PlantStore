@@ -41,7 +41,7 @@ import kotlinx.coroutines.delay
 @Composable
 fun WelcomeScreen(
     onLogIn: () -> Unit,
-    onSingIn: () -> Unit
+    onSignUp: () -> Unit
 ) {
     val images = listOf(
         R.drawable.flower_1,
@@ -124,7 +124,7 @@ fun WelcomeScreen(
             }
 
             Button(
-                onClick = onSingIn,
+                onClick = onSignUp,
                 border = BorderStroke(2.dp, Color.Black),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color.White,
@@ -159,6 +159,6 @@ fun WelcomeScreen(
 fun WelcomeScreenPreview() {
     WelcomeScreen(
         onLogIn = {},
-        onSingIn = {}
+        onSignUp = {}
     )
 }
