@@ -31,12 +31,12 @@ fun DetailName(
 ) {
     val categories = remember { mutableStateListOf<CategoryModel>() }
 
-    LaunchedEffect(Unit) {
-        viewModel.loadCategory().observeForever {
-            categories.clear()
-            categories.addAll(it)
-        }
-    }
+//    LaunchedEffect(Unit) {
+//        viewModel.loadCategory().observeForever {
+//            categories.clear()
+//            categories.addAll(it)
+//        }
+//    }
 
     Row(
         modifier = Modifier

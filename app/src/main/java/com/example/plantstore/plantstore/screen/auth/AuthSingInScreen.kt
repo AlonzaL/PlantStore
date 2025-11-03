@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -44,14 +45,18 @@ import androidx.compose.ui.unit.sp
 import com.example.plantstore.R
 
 @Composable
-fun AuthLogInScreen(
+fun AuthSingInScreen(
     onStartClick: () -> Unit,
     onBack: () -> Unit
 ) {
 
     var email by remember { mutableStateOf("") }
+    var name by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var passwordRepeat by remember { mutableStateOf("") }
     var isPasswordVisible by remember { mutableStateOf(false) }
+
+    var passwordsMatch = (password == passwordRepeat)
 
     Box(
         modifier = Modifier
@@ -74,7 +79,7 @@ fun AuthLogInScreen(
 
 
         AuthHeader(
-            title = "Log in",
+            title = "Sing in",
             onBack = onBack
         )
 
@@ -88,8 +93,8 @@ fun AuthLogInScreen(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(bottom = 50.dp)
             ) {
+
                 Box {
                     // Слой 1: Тень (простой Box)
                     Box(
@@ -127,7 +132,55 @@ fun AuthLogInScreen(
                         )
                     )
                 }
-                Spacer(modifier = Modifier.height(10.dp))
+
+                if (email != null) {
+                    Spacer(modifier = Modifier.height(10.dp))
+                    Text(
+                        text = "Эта почта уже зарегистрирована",
+                        fontWeight = FontWeight.Bold,
+                        color = Color.Red
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(15.dp))
+
+                Box {
+                    // Слой 1: Тень (простой Box)
+                    Box(
+                        modifier = Modifier
+                            .matchParentSize() // Занимает тот же размер, что и поле ввода
+                            .offset(x = 10.dp, y = 10.dp) // Смещаем тень
+                            .background(
+                                color = Color.Black.copy(alpha = 0.1f),
+                                shape = RoundedCornerShape(20.dp)
+                            )
+                            .blur(radius = 8.dp) // Размываем
+                    )
+
+                    // 3. Поле для логина
+                    TextField(
+                        value = name,
+                        onValueChange = { name = it },
+                        label = {
+                            Text(
+                                text = "Name",
+                                color = colorResource(R.color.auth)
+                            )
+                        },
+                        singleLine = true,
+                        shape = RoundedCornerShape(20.dp),
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        colors = TextFieldDefaults.colors(
+                            focusedIndicatorColor = Color.Transparent, // Убираем подчеркивание
+                            unfocusedIndicatorColor = Color.Transparent,
+                            disabledIndicatorColor = Color.Transparent,
+                            focusedContainerColor = colorResource(R.color.authBg), // Белый фон
+                            unfocusedContainerColor = colorResource(R.color.authBg)
+                        )
+                    )
+                }
+                Spacer(modifier = Modifier.height(15.dp))
 
                 Box {
                     // Слой 1: Тень (простой Box)
@@ -166,11 +219,77 @@ fun AuthLogInScreen(
                         )
                     )
                 }
+                if (password != null) {
+                    Spacer(modifier = Modifier.height(10.dp))
+                    Text(
+                        text = when (password.length) {
+                            in 0..6 -> "Пароль слишком короткий"
+                            in 7..8 -> "Пароль нормальный"
+                            else -> "Пароль надёжный"
+                        },
+                        fontWeight = FontWeight.Bold,
+                        color = when (password.length) {
+                            in 0..6 -> Color.Red
+                            in 7..8 -> Color.Yellow
+                            else -> Color.Green
+                        }
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(15.dp))
+
+                Box {
+                    // Слой 1: Тень (простой Box)
+                    Box(
+                        modifier = Modifier
+                            .matchParentSize() // Занимает тот же размер, что и поле ввода
+                            .offset(x = 10.dp, y = 10.dp) // Смещаем тень
+                            .background(
+                                color = Color.Black.copy(alpha = 0.1f),
+                                shape = RoundedCornerShape(20.dp)
+                            )
+                            .blur(radius = 8.dp) // Размываем
+                    )
+                    // 4. Поле для пароля
+                    TextField(
+                        value = passwordRepeat,
+                        onValueChange = { passwordRepeat = it },
+                        label = {
+                            Text(
+                                text = "Repeat password",
+                                color = colorResource(R.color.auth)
+                            )
+                        },
+                        singleLine = true,
+                        shape = RoundedCornerShape(20.dp),
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                        visualTransformation = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        colors = TextFieldDefaults.colors(
+                            focusedIndicatorColor = Color.Transparent, // Убираем подчеркивание
+                            unfocusedIndicatorColor = Color.Transparent,
+                            disabledIndicatorColor = Color.Transparent,
+                            focusedContainerColor = colorResource(R.color.authBg), // Белый фон
+                            unfocusedContainerColor = colorResource(R.color.authBg)
+                        )
+                    )
+                }
+                if (!passwordsMatch) {
+                    Spacer(modifier = Modifier.height(10.dp))
+                    Text(
+                        text = "Пароли не совпадают",
+                        fontWeight = FontWeight.Bold,
+                        color = Color.Red
+                    )
+                }
             }
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(70.dp))
 
             Button(
-                onClick = onStartClick,
+                onClick = {
+                    if (passwordsMatch) onStartClick
+                },
                 modifier = Modifier
                     .padding(horizontal = 12.dp, vertical = 8.dp),
                 colors = ButtonDefaults.buttonColors(
@@ -178,7 +297,10 @@ fun AuthLogInScreen(
                 ),
                 border = BorderStroke(
                     width = 2.dp,
-                    color = colorResource(R.color.authBg)
+                    color = if (passwordsMatch)
+                        colorResource(R.color.authBg)
+                    else
+                        colorResource(R.color.descr)
                 ),
                 shape = RoundedCornerShape(30.dp)
             ) {
@@ -198,8 +320,8 @@ fun AuthLogInScreen(
 
 @Preview
 @Composable
-fun AuthLogInScreenPreview() {
-    AuthLogInScreen(
+fun AuthSingInScreenPreview() {
+    AuthSingInScreen(
         onStartClick = {},
         onBack = {}
     )

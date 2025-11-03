@@ -11,7 +11,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.plantstore.plantstore.domain.PlantModel
-import com.example.plantstore.plantstore.screen.auth.AuthScreen
+import com.example.plantstore.plantstore.screen.auth.AuthLogInScreen
+import com.example.plantstore.plantstore.screen.auth.AuthSingInScreen
 import com.example.plantstore.plantstore.screen.detail.DetailScreen
 import com.example.plantstore.plantstore.screen.intro.WelcomeScreen
 import com.example.plantstore.plantstore.screen.main.MainScreen
@@ -27,8 +28,23 @@ fun NavGraph(
         navController = navController,
         startDestination = Screen.Intro.route
     ) {
-        composable(Screen.Auth.route) {
-            AuthScreen(
+        composable(Screen.AuthLogIn.route) {
+            AuthLogInScreen(
+                onStartClick = {
+                    navController.navigate(Screen.Home.route) {
+                        popUpTo(Screen.Intro.route) {
+                            inclusive = true
+                        }
+                    }
+                },
+                onBack = {
+                    navController.navigate(Screen.Intro.route)
+                }
+            )
+        }
+
+        composable(Screen.AuthSingIn.route) {
+            AuthSingInScreen(
                 onStartClick = {
                     navController.navigate(Screen.Home.route) {
                         popUpTo(Screen.Intro.route) {
@@ -45,7 +61,14 @@ fun NavGraph(
         composable(Screen.Intro.route) {
             WelcomeScreen(
                 onLogIn = {
-                    navController.navigate(Screen.Auth.route) {
+                    navController.navigate(Screen.AuthLogIn.route) {
+                        popUpTo(Screen.Intro.route) {
+                            inclusive = true
+                        }
+                    }
+                },
+                onSingIn = {
+                    navController.navigate(Screen.AuthSingIn.route) {
                         popUpTo(Screen.Intro.route) {
                             inclusive = true
                         }
@@ -99,5 +122,6 @@ sealed class Screen(
     data object Home : Screen("home")
     data object Detail : Screen("detail")
 
-    data object Auth : Screen("auth")
+    data object AuthLogIn : Screen("authLogIn")
+    data object AuthSingIn : Screen("authSingIn")
 }
