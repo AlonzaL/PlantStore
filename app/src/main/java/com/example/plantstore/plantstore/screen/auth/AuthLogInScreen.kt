@@ -172,7 +172,9 @@ fun AuthLogInScreen(
             Spacer(modifier = Modifier.height(20.dp))
 
             Button(
-                onClick = { viewModel.logIn(email, password) },
+                onClick = {
+                    viewModel.logIn(email, password)
+                       onStartClick()   },
                 modifier = Modifier
                     .padding(horizontal = 12.dp, vertical = 8.dp),
                 colors = ButtonDefaults.buttonColors(

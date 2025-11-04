@@ -48,7 +48,6 @@ fun AuthSingInScreen(
 ) {
 
     var email by remember { mutableStateOf("") }
-    var name by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordRepeat by remember { mutableStateOf("") }
     var isPasswordVisible by remember { mutableStateOf(false) }
@@ -129,53 +128,15 @@ fun AuthSingInScreen(
                     )
                 }
 
-                if (email != null) {
-                    Spacer(modifier = Modifier.height(10.dp))
-                    Text(
-                        text = "Эта почта уже зарегистрирована",
-                        fontWeight = FontWeight.Bold,
-                        color = Color.Red
-                    )
-                }
+//                if (email != null) {
+//                    Spacer(modifier = Modifier.height(10.dp))
+//                    Text(
+//                        text = "Эта почта уже зарегистрирована",
+//                        fontWeight = FontWeight.Bold,
+//                        color = Color.Red
+//                    )
+//                }
 
-                Spacer(modifier = Modifier.height(15.dp))
-
-                Box {
-                    // Слой 1: Тень (простой Box)
-                    Box(
-                        modifier = Modifier
-                            .matchParentSize() // Занимает тот же размер, что и поле ввода
-                            .offset(x = 10.dp, y = 10.dp) // Смещаем тень
-                            .background(
-                                color = Color.Black.copy(alpha = 0.1f),
-                                shape = RoundedCornerShape(20.dp)
-                            )
-                            .blur(radius = 8.dp) // Размываем
-                    )
-
-                    // 3. Поле для логина
-                    TextField(
-                        value = name,
-                        onValueChange = { name = it },
-                        label = {
-                            Text(
-                                text = "Name",
-                                color = colorResource(R.color.auth)
-                            )
-                        },
-                        singleLine = true,
-                        shape = RoundedCornerShape(20.dp),
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        colors = TextFieldDefaults.colors(
-                            focusedIndicatorColor = Color.Transparent, // Убираем подчеркивание
-                            unfocusedIndicatorColor = Color.Transparent,
-                            disabledIndicatorColor = Color.Transparent,
-                            focusedContainerColor = colorResource(R.color.authBg), // Белый фон
-                            unfocusedContainerColor = colorResource(R.color.authBg)
-                        )
-                    )
-                }
                 Spacer(modifier = Modifier.height(15.dp))
 
                 Box {
@@ -215,22 +176,22 @@ fun AuthSingInScreen(
                         )
                     )
                 }
-                if (password != null) {
-                    Spacer(modifier = Modifier.height(10.dp))
-                    Text(
-                        text = when (password.length) {
-                            in 0..6 -> "Пароль слишком короткий"
-                            in 7..8 -> "Пароль нормальный"
-                            else -> "Пароль надёжный"
-                        },
-                        fontWeight = FontWeight.Bold,
-                        color = when (password.length) {
-                            in 0..6 -> Color.Red
-                            in 7..8 -> Color.Yellow
-                            else -> Color.Green
-                        }
-                    )
-                }
+//                if (password != null) {
+//                    Spacer(modifier = Modifier.height(10.dp))
+//                    Text(
+//                        text = when (password.length) {
+//                            in 0..6 -> "Пароль слишком короткий"
+//                            in 7..8 -> "Пароль нормальный"
+//                            else -> "Пароль надёжный"
+//                        },
+//                        fontWeight = FontWeight.Bold,
+//                        color = when (password.length) {
+//                            in 0..6 -> Color.Red
+//                            in 7..8 -> Color.Yellow
+//                            else -> Color.Green
+//                        }
+//                    )
+//                }
 
                 Spacer(modifier = Modifier.height(15.dp))
 

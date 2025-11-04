@@ -33,67 +33,6 @@ import com.example.plantstore.R
 import com.example.plantstore.plantstore.domain.PlantModel
 
 @Composable
-fun PlantCard(
-    item: PlantModel,
-    onClick: () -> Unit
-) {
-    Card(
-        modifier = Modifier
-            .padding(8.dp)
-            .size(
-                width = 190.dp,
-                height = 260.dp
-            ),
-        shape = RoundedCornerShape(10.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 3.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = Color.White
-        ),
-        onClick = onClick
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(8.dp)
-        ) {
-            Box(
-                modifier = Modifier
-                    .size(165.dp)
-                    .clip(RoundedCornerShape(18.dp))
-                    .background(
-                        color = colorResource(R.color.bg_card)
-                    ),
-                contentAlignment = Alignment.Center
-            ) {
-                AsyncImage(
-                    model = item.ImagePath[0],
-                    contentDescription = null,
-                    modifier = Modifier
-                        .fillMaxSize(),
-                    contentScale = ContentScale.Fit
-                )
-
-            }
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = item.Title,
-                color = colorResource(R.color.black),
-                fontSize = 16.sp,
-                maxLines = 2
-            )
-            Spacer(modifier = Modifier.height(4.dp))
-
-            Text(
-                text = "$ ${(item.Price)}",
-                color = colorResource(R.color.price),
-                fontSize = 16.sp,
-                maxLines = 2
-            )
-        }
-    }
-}
-
-@Composable
 fun PlantSection(
     items: List<PlantModel>,
     onClick: (PlantModel) -> Unit
@@ -124,14 +63,4 @@ fun PlantSection(
             }
         }
     }
-}
-
-@Composable
-@Preview
-private fun PlantCardPreview() {
-    val item = PlantModel(
-        Title = "Plant",
-        Price = 25.3
-    )
-    PlantCard(item = item, onClick = {})
 }

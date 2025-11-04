@@ -1,5 +1,6 @@
 package com.example.plantstore.plantstore.screen.detail
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -19,8 +20,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -47,6 +50,7 @@ fun DetailImage(
             contentAlignment = Alignment.Center,
             modifier = Modifier
                 .fillMaxWidth()
+                .padding(bottom = 50.dp)
         ) {
             Card(
                 modifier = Modifier
@@ -61,16 +65,33 @@ fun DetailImage(
                 backgroundColor = colorResource(R.color.bg_card),
             ) {
             }
+            AsyncImage(
+                model = imagePath,
+                contentDescription = null,
+                contentScale = ContentScale.Fit,
+                modifier = Modifier
+                    .size(270.dp)
+                    .offset(y = (50).dp)
+                    .graphicsLayer(
+                        // А потом визуально увеличивается в 3 раза
+                        scaleX = 2f,
+                        scaleY = 2f
+                    )
+            )
+//            Image(
+//                painter = painterResource(R.drawable.flower_2),
+//                contentDescription = null,
+//                contentScale = ContentScale.Fit,
+//                modifier = Modifier
+//                    .size(270.dp)
+//                    .offset(y = (50).dp)
+//                    .graphicsLayer(
+//                        // А потом визуально увеличивается в 3 раза
+//                        scaleX = 2f,
+//                        scaleY = 2f
+//                    )
+//            )
         }
-
-        AsyncImage(
-            model = imagePath,
-            contentDescription = null,
-            contentScale = ContentScale.Fit,
-            modifier = Modifier
-                .height(50.dp)
-                .offset(y = (20).dp)
-        )
 
         Row(
             modifier = Modifier

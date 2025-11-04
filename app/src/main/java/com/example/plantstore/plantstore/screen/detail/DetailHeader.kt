@@ -37,14 +37,16 @@ fun DetailHeader(
         verticalAlignment = Alignment.CenterVertically
     ) {
         IconButton(
-            onClick = onBack
+            onClick = onBack,
+            modifier = Modifier
+                .padding(0.dp)
         ) {
             Icon(
                 painter = painterResource(R.drawable.back),
                 contentDescription = null,
                 tint = Color.Unspecified,
                 modifier = Modifier
-                    .size(25.dp)
+                    .size(22.dp)
             )
         }
 

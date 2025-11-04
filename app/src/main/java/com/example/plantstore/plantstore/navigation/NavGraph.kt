@@ -16,6 +16,8 @@ import com.example.plantstore.plantstore.screen.auth.AuthLogInScreen
 import com.example.plantstore.plantstore.screen.auth.AuthSingInScreen
 import com.example.plantstore.plantstore.screen.detail.DetailScreen
 import com.example.plantstore.plantstore.screen.intro.WelcomeScreen
+import com.example.plantstore.plantstore.screen.listPlant.ListPlant
+import com.example.plantstore.plantstore.screen.listPlant.ListPlantScreen
 import com.example.plantstore.plantstore.screen.main.MainScreen
 import com.example.plantstore.plantstore.screen.settings.SettingsScreen
 import com.example.plantstore.plantstore.viewModel.AuthViewModel
@@ -83,6 +85,17 @@ fun NavGraph(
             )
         }
 
+        composable(Screen.ListPlant.route) {
+            ListPlantScreen(
+                onBack = {
+                    navController.navigate(Screen.Home.route)
+                },
+                onCart = {},
+                onSetting = {},
+                title = "Product"
+            )
+        }
+
         composable(Screen.Home.route) {
             MainScreen(
                 viewModel = mainViewModel,
@@ -93,6 +106,10 @@ fun NavGraph(
                 onCartClick = {},
                 onSettingsClick = {
                     navController.navigate(Screen.Settings.route)
+                },
+                onSeeAllNew = {},
+                onSeeAllPopular = {
+                    navController.navigate(Screen.ListPlant.route)
                 }
             )
         }
@@ -137,9 +154,8 @@ sealed class Screen(
     data object Intro : Screen("intro")
     data object Home : Screen("home")
     data object Detail : Screen("detail")
-
     data object AuthLogIn : Screen("authLogIn")
     data object AuthSignUp : Screen("authSingIn")
-
     data object Settings : Screen("settings")
+    data object ListPlant : Screen("listPlant")
 }

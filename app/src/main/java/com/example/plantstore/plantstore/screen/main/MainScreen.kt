@@ -21,7 +21,9 @@ fun MainScreen(
     viewModel: MainViewModel,
     onOpenDetail: (PlantModel) -> Unit,
     onCartClick: () -> Unit,
-    onSettingsClick: () -> Unit
+    onSettingsClick: () -> Unit,
+    onSeeAllPopular: () -> Unit,
+    onSeeAllNew:() -> Unit
 ) {
     val categories = remember { mutableStateListOf<CategoryModel>() }
     val popularPlant = remember { mutableStateListOf<PlantModel>() }
@@ -70,7 +72,7 @@ fun MainScreen(
             item {
                 SectionHeader(
                     title = "Popular product",
-                    onSeeAll = {}
+                    onSeeAll = onSeeAllPopular
                 )
             }
             item {
@@ -82,7 +84,7 @@ fun MainScreen(
             item {
                 SectionHeader(
                     title = "New product",
-                    onSeeAll = {}
+                    onSeeAll = onSeeAllNew
                 )
             }
             item {
@@ -104,6 +106,8 @@ fun MainScreenPreview() {
         viewModel = viewModel,
         onOpenDetail = {},
         onCartClick = {},
-        onSettingsClick = {}
+        onSettingsClick = {},
+        onSeeAllNew = {},
+        onSeeAllPopular = {}
     )
 }
