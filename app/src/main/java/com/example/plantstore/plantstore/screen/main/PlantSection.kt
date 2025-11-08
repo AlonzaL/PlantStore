@@ -40,8 +40,6 @@ fun PlantSection(
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 16.dp)
-            .heightIn(min = 260.dp)
     ) {
         if (items.isEmpty()) {
             CircularProgressIndicator(
@@ -51,7 +49,7 @@ fun PlantSection(
         } else {
             LazyRow(
                 contentPadding = PaddingValues(
-                    horizontal = 16.dp
+                    horizontal = 8.dp
                 )
             ) {
                 items(items.take(3)) { item ->

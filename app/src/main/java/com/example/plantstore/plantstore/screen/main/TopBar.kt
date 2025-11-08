@@ -3,7 +3,11 @@ package com.example.plantstore.plantstore.screen.main
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
@@ -17,10 +21,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.plantstore.R
 
 @Composable
-@Preview
 fun TopBar(
     onCartClick: () -> Unit,
     onSettingsClick: () -> Unit
@@ -28,12 +32,6 @@ fun TopBar(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(
-                start = 16.dp,
-                end = 16.dp,
-                top = 24.dp,
-                bottom = 10.dp
-            )
             .background(Color.White),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
@@ -41,22 +39,23 @@ fun TopBar(
         Row {
             Text(
                 text = "Welcome, ",
+                fontSize = 16.sp
             )
             Text(
                 text = "Trisha",
+                fontSize = 16.sp,
                 fontWeight = FontWeight.Bold
             )
         }
 
-        Row(
-            //horizontalArrangement = Arrangement.spacedBy(5.dp)
-        ) {
+        Row() {
             IconButton(onClick = onCartClick) {
                 Icon(
                     painter = painterResource(id = R.drawable.cart),
                     contentDescription = "",
                     modifier = Modifier
-                        .size(25.dp)
+                        .size(15.dp)
+                        .offset(x = 12.dp)
                 )
             }
             IconButton(onClick = onSettingsClick) {
@@ -64,9 +63,19 @@ fun TopBar(
                     painter = painterResource(id = R.drawable.setting),
                     contentDescription = "",
                     modifier = Modifier
-                        .size(25.dp)
+                        .size(15.dp)
+                        .offset(x = 12.dp)
                 )
             }
         }
     }
+}
+
+@Composable
+@Preview
+fun TopBarPreview() {
+    TopBar(
+        onCartClick = {},
+        onSettingsClick = {}
+    )
 }

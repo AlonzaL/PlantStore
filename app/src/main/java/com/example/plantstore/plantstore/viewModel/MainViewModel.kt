@@ -1,27 +1,29 @@
 package com.example.plantstore.plantstore.viewModel
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.example.plantstore.plantstore.domain.CategoryModel
+import androidx.lifecycle.viewModelScope
 import com.example.plantstore.plantstore.domain.PlantModel
 import com.example.plantstore.plantstore.repository.MainRepository
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 
 class MainViewModel: ViewModel() {
-    private val repository = MainRepository()
 
-    fun loadCategory(): LiveData<MutableList<CategoryModel>> {
-        return repository.loadCategory()
+    private val _listPopularPlant = MutableStateFlow<List<PlantModel>>(emptyList())
+    val listPopularPlant = _listPopularPlant.asStateFlow()
+
+    private val _listNewPlant = MutableStateFlow<List<PlantModel>>(emptyList())
+    val listNewPlant = _listNewPlant.asStateFlow()
+
+    init {
+        viewModelScope.launch {
+            _listPopularPlant.value = MainRepository.getPopularPlant()
+        }
     }
-
-    fun loadPopularPlant(): LiveData<MutableList<PlantModel>> {
-        return repository.loadPopularPlant()
-    }
-
-    fun loadNewPlant(): LiveData<MutableList<PlantModel>> {
-        return repository.loadNewPlant()
-    }
-
-    fun loadFiltered(id: String): LiveData<MutableList<PlantModel>> {
-        return repository.loadFiltered(id)
+    init {
+        viewModelScope.launch {
+            _listNewPlant.value = MainRepository.getNewPlant()
+        }
     }
 }

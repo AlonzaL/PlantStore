@@ -5,16 +5,37 @@ import androidx.lifecycle.MutableLiveData
 
 import com.example.plantstore.plantstore.domain.CategoryModel
 import com.example.plantstore.plantstore.domain.PlantModel
+import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.firestore.firestore
+import com.google.firebase.firestore.toObjects
+import kotlinx.coroutines.tasks.await
 
-class MainRepository {
+object MainRepository {
+
+    val fs = Firebase.firestore
+
+    suspend fun getPopularPlant(): List<PlantModel> {
+        return fs.collection("plants")
+            .whereEqualTo("popularPlant", true)
+            .get()
+            .await()
+            .toObjects()
+    }
+
+    suspend fun getNewPlant(): List<PlantModel> {
+        return fs.collection("plants")
+            .whereEqualTo("newPlant", true)
+            .get()
+            .await()
+            .toObjects()
+    }
 
     private val firebaseDatabase = FirebaseDatabase.getInstance()
-
     fun loadCategory(): LiveData<MutableList<CategoryModel>> {
         val listData = MutableLiveData<MutableList<CategoryModel>>()
         val ref = firebaseDatabase.getReference("Category")
@@ -99,9 +120,9 @@ class MainRepository {
             object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val lists = mutableListOf<PlantModel>()
-                    for(childSnapshot in snapshot.children) {
+                    for (childSnapshot in snapshot.children) {
                         val list = childSnapshot.getValue(PlantModel::class.java)
-                        if(list != null) {
+                        if (list != null) {
                             lists.add(list)
                         }
                     }

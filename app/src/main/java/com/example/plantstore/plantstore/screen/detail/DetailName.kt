@@ -29,15 +29,6 @@ import com.example.plantstore.plantstore.helper.previewPlant
 fun DetailName(
     item: PlantModel
 ) {
-    val categories = remember { mutableStateListOf<CategoryModel>() }
-
-//    LaunchedEffect(Unit) {
-//        viewModel.loadCategory().observeForever {
-//            categories.clear()
-//            categories.addAll(it)
-//        }
-//    }
-
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -58,7 +49,7 @@ fun DetailName(
             onClick = { }
         ) {
             Text(
-                text = "${categories.firstOrNull { it.Id == item.CategoryId }}",
+                text = item.Category,
                 textDecoration = TextDecoration.Underline
             )
         }

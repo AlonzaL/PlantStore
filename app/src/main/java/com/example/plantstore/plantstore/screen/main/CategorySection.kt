@@ -22,55 +22,34 @@ import com.example.plantstore.plantstore.domain.CategoryModel
 
 @Composable
 fun CategorySection(
-    categories: SnapshotStateList<CategoryModel>,
-    showCategoryLoading: Boolean
+    categories: List<String>
 ) {
-    if (showCategoryLoading) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(200.dp),
-            contentAlignment = Alignment.Center
-        ) {
-            CircularProgressIndicator()
-        }
-    } else {
-        val rows = categories.chunked(3)
-        val context = LocalContext.current
+    val rows = categories.chunked(3)
+    val context = LocalContext.current
 
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            categories.forEach { category ->
-                CategoryItem(
-                    category = category,
-                    modifier = Modifier
-                        .weight(1f),
-                    onItemClick = {
-//                        val intent = Intent(context, ItemsListActivity::class.java).apply {
-//                            putExtra("id", category.Id.toString())
-//                            putExtra("title", category.Name.toString())
-//                        }
-
-//                        startActivity(context, intent, null)
-                    }
-                )
-            }
+    Row(
+        modifier = Modifier
+            .fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        categories.forEach { category ->
+            CategoryItem(
+                category = category,
+                onItemClick = { }
+            )
         }
     }
 }
 
+
 @Composable
 fun CategoryItem(
-    category: CategoryModel,
+    category: String,
     modifier: Modifier = Modifier,
     onItemClick: () -> Unit
 ) {
     Text(
-        text = category.Name,
+        text = category,
         fontSize = 14.sp,
         style = TextStyle(textDecoration = TextDecoration.Underline),
         modifier = modifier

@@ -51,8 +51,8 @@ fun AuthLogInScreen(
     onBack: () -> Unit
 ) {
 
-    var email by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("loza@yandex.ru") }
+    var password by remember { mutableStateOf("12345678") }
     var isPasswordVisible by remember { mutableStateOf(false) }
 
     Box(
@@ -74,12 +74,10 @@ fun AuthLogInScreen(
             contentScale = ContentScale.Crop
         )
 
-
         AuthHeader(
             title = "Log in",
             onBack = onBack
         )
-
 
         Column(
             modifier = Modifier
@@ -173,7 +171,7 @@ fun AuthLogInScreen(
 
             Button(
                 onClick = {
-                    viewModel.logIn(email, password)
+                    //viewModel.logIn(email, password)
                        onStartClick()   },
                 modifier = Modifier
                     .padding(horizontal = 12.dp, vertical = 8.dp),
@@ -193,8 +191,6 @@ fun AuthLogInScreen(
                 )
             }
         }
-
-
         Spacer(modifier = Modifier.height(32.dp))
     }
 }

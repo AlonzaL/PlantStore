@@ -15,4 +15,14 @@
     <color name="descr">#555555</color>
     <color name="authBg">#F1F1F1</color>
     <color name="auth">#777777</color>
+    <color name="delete">#FF5D5D</color>
+
+    <color name="bg_card_dark">#282D1C</color>
+    <color name="price_dark">#458144</color>
+    <color name="fav_dark">#A1DF87</color>
+    <color name="no_fav_dark">#ADADAD</color>
+    <color name="descr_dark">#555555</color>
+    <color name="authBg_dark">#1B1B1B</color>
+    <color name="auth_dark">#777777</color>
+    <color name="delete_dark">#FF7676</color>
 </resources>

@@ -90,6 +90,10 @@ fun NavGraph(
                 onBack = {
                     navController.navigate(Screen.Home.route)
                 },
+                onOpenDetail = {
+                        plantModel ->
+                    navController.navDetail(plantModel)
+                },
                 onCart = {},
                 onSetting = {},
                 title = "Product"
@@ -105,7 +109,7 @@ fun NavGraph(
                 },
                 onCartClick = {},
                 onSettingsClick = {
-                    navController.navigate(Screen.Settings.route)
+                    navController.navigate(Screen.Setting.route)
                 },
                 onSeeAllNew = {},
                 onSeeAllPopular = {
@@ -114,7 +118,7 @@ fun NavGraph(
             )
         }
 
-        composable(Screen.Settings.route) {
+        composable(Screen.Setting.route) {
             SettingsScreen(
                 viewModel = authViewModel
             )
@@ -156,6 +160,6 @@ sealed class Screen(
     data object Detail : Screen("detail")
     data object AuthLogIn : Screen("authLogIn")
     data object AuthSignUp : Screen("authSingIn")
-    data object Settings : Screen("settings")
+    data object Setting : Screen("setting")
     data object ListPlant : Screen("listPlant")
 }

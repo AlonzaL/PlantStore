@@ -19,6 +19,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -34,13 +35,13 @@ fun PlantCard(
 ) {
     Card(
         modifier = Modifier
-            .padding(8.dp)
+            //.padding(8.dp)
             .size(
-                width = 190.dp,
-                height = 260.dp
+                width = 138.dp,
+                height = 250.dp
             ),
         shape = RoundedCornerShape(10.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 3.dp),
+        //elevation = CardDefaults.cardElevation(defaultElevation = 3.dp),
         colors = CardDefaults.cardColors(
             containerColor = Color.White
         ),
@@ -53,7 +54,7 @@ fun PlantCard(
         ) {
             Box(
                 modifier = Modifier
-                    .size(165.dp)
+                    .size(width = 138.dp, height = 168.dp)
                     .clip(RoundedCornerShape(18.dp))
                     .background(
                         color = colorResource(R.color.bg_card)
@@ -61,7 +62,9 @@ fun PlantCard(
                 contentAlignment = Alignment.Center
             ) {
                 AsyncImage(
-                    model = item.ImagePath[0],
+                    model = painterResource(R.drawable.flower_1)
+                        //item.ImagePath[0]
+                    ,
                     contentDescription = null,
                     modifier = Modifier
                         .fillMaxSize(),
@@ -76,7 +79,7 @@ fun PlantCard(
                 fontSize = 16.sp,
                 maxLines = 2
             )
-            Spacer(modifier = Modifier.height(4.dp))
+            Spacer(modifier = Modifier.height(9.dp))
 
             Text(
                 text = "$ ${(item.Price)}",
@@ -88,8 +91,8 @@ fun PlantCard(
     }
 }
 
-@Composable
 @Preview
+@Composable
 fun PlantCardPreview() {
     PlantCard(
         item = previewPlant,

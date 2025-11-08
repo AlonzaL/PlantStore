@@ -29,9 +29,6 @@ fun DetailHeader(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(
-                start = 30.dp
-            )
             .statusBarsPadding(),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically

@@ -30,8 +30,6 @@ fun DetailBody(
     item: PlantModel
 ) {
 
-    val categories = remember { mutableStateListOf<CategoryModel>() }
-
     Column(
         modifier = Modifier
             .padding(start = 40.dp, top = 25.dp)
@@ -44,7 +42,7 @@ fun DetailBody(
         ) {
             StateColumn(
                 title = "Type",
-                value = "${categories.firstOrNull { it.Id == item.CategoryId.toInt() }}"
+                value = item.Category
             )
 
             StateColumn(
