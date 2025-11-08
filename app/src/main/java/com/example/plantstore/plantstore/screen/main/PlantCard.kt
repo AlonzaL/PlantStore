@@ -62,9 +62,7 @@ fun PlantCard(
                 contentAlignment = Alignment.Center
             ) {
                 AsyncImage(
-                    model = painterResource(R.drawable.flower_1)
-                        //item.ImagePath[0]
-                    ,
+                    model = item.ImagePath[1],
                     contentDescription = null,
                     modifier = Modifier
                         .fillMaxSize(),
