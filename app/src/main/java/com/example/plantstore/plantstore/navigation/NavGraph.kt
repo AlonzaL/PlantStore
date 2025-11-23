@@ -7,16 +7,16 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.plantstore.plantstore.domain.PlantModel
 import com.example.plantstore.plantstore.screen.auth.AuthLogInScreen
 import com.example.plantstore.plantstore.screen.auth.AuthSingInScreen
 import com.example.plantstore.plantstore.screen.detail.DetailScreen
 import com.example.plantstore.plantstore.screen.intro.WelcomeScreen
-import com.example.plantstore.plantstore.screen.listPlant.ListPlant
 import com.example.plantstore.plantstore.screen.listPlant.ListPlantScreen
 import com.example.plantstore.plantstore.screen.main.MainScreen
 import com.example.plantstore.plantstore.screen.settings.SettingsScreen
@@ -85,18 +85,28 @@ fun NavGraph(
             )
         }
 
-        composable(Screen.ListPlant.route) {
+        composable(
+            route = Screen.ListPlant.route,
+            arguments = listOf(navArgument("listType") {
+                type = NavType.StringType
+            })
+        ) { backStackEntry ->
+            val listTypeString = backStackEntry.arguments?.getString("listType")
+
+            val listType = try {
+                PlantListType.valueOf(listTypeString ?: PlantListType.POPULAR.name)
+            } catch (e: IllegalArgumentException) {
+                PlantListType.POPULAR
+            }
+
             ListPlantScreen(
-                onBack = {
-                    navController.navigate(Screen.Home.route)
-                },
-                onOpenDetail = {
-                        plantModel ->
+                listType = listType,
+                onOpenDetail = { plantModel ->
                     navController.navDetail(plantModel)
                 },
-                onCart = {},
-                onSetting = {},
-                title = "Product"
+                onBack = { navController.popBackStack() },
+                onSetting = { },
+                onCart = { }
             )
         }
 
@@ -111,9 +121,11 @@ fun NavGraph(
                 onSettingsClick = {
                     navController.navigate(Screen.Setting.route)
                 },
-                onSeeAllNew = {},
+                onSeeAllNew = {
+                    navController.navigate(Screen.ListPlant.createRoute(PlantListType.NEW))
+                },
                 onSeeAllPopular = {
-                    navController.navigate(Screen.ListPlant.route)
+                    navController.navigate(Screen.ListPlant.createRoute(PlantListType.POPULAR))
                 }
             )
         }
@@ -161,5 +173,14 @@ sealed class Screen(
     data object AuthLogIn : Screen("authLogIn")
     data object AuthSignUp : Screen("authSingIn")
     data object Setting : Screen("setting")
-    data object ListPlant : Screen("listPlant")
+    data object ListPlant : Screen("list_screen/{listType}") {
+        fun createRoute(listType: PlantListType): String {
+            return "list_screen/${listType.name}"
+        }
+    }
+}
+
+enum class PlantListType {
+    POPULAR,
+    NEW
 }

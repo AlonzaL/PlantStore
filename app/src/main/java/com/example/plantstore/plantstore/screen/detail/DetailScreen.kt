@@ -7,6 +7,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.plantstore.plantstore.domain.PlantModel
 import com.example.plantstore.plantstore.helper.previewPlant
+import com.example.plantstore.plantstore.screen.detail.components.DetailBody
+import com.example.plantstore.plantstore.screen.detail.components.DetailBottomBar
+import com.example.plantstore.plantstore.screen.detail.components.DetailHeader
+import com.example.plantstore.plantstore.screen.detail.components.DetailImage
+import com.example.plantstore.plantstore.screen.detail.components.DetailName
 
 @Composable
 fun DetailScreen(

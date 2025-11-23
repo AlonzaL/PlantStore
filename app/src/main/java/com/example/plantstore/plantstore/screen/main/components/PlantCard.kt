@@ -1,4 +1,4 @@
-package com.example.plantstore.plantstore.screen.main
+package com.example.plantstore.plantstore.screen.main.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -19,7 +19,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -35,13 +34,10 @@ fun PlantCard(
 ) {
     Card(
         modifier = Modifier
-            //.padding(8.dp)
             .size(
                 width = 138.dp,
-                height = 250.dp
+                height = 240.dp
             ),
-        shape = RoundedCornerShape(10.dp),
-        //elevation = CardDefaults.cardElevation(defaultElevation = 3.dp),
         colors = CardDefaults.cardColors(
             containerColor = Color.White
         ),
@@ -50,7 +46,7 @@ fun PlantCard(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(8.dp)
+                //.padding(8.dp)
         ) {
             Box(
                 modifier = Modifier

@@ -1,9 +1,8 @@
-package com.example.plantstore.plantstore.screen.main
+package com.example.plantstore.plantstore.screen.main.components
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -16,10 +15,9 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.plantstore.R
-import com.example.plantstore.plantstore.domain.PlantModel
 
 @Composable
-fun SectionHeader(
+fun HeaderSection(
     title: String,
     onSeeAll: (() -> Unit)?
 ) {

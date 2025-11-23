@@ -1,14 +1,11 @@
-package com.example.plantstore.plantstore.screen.detail
+package com.example.plantstore.plantstore.screen.detail.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
@@ -43,7 +40,7 @@ fun DetailHeader(
                 contentDescription = null,
                 tint = Color.Unspecified,
                 modifier = Modifier
-                    .size(22.dp)
+                    .size(15.dp)
             )
         }
 
@@ -57,7 +54,7 @@ fun DetailHeader(
                     contentDescription = null,
                     tint = Color.Unspecified,
                     modifier = Modifier
-                        .size(25.dp)
+                        .size(15.dp)
                 )
             }
             IconButton(
@@ -68,7 +65,7 @@ fun DetailHeader(
                     contentDescription = null,
                     tint = Color.Unspecified,
                     modifier = Modifier
-                        .size(25.dp)
+                        .size(15.dp)
                 )
             }
         }

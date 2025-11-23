@@ -1,7 +1,13 @@
 package com.example.plantstore.plantstore.screen.listPlant
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -15,31 +21,54 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.plantstore.plantstore.domain.PlantModel
-import com.example.plantstore.plantstore.navigation.navDetail
-import com.example.plantstore.plantstore.screen.detail.DetailHeader
-import com.example.plantstore.plantstore.screen.main.PlantCard
+import com.example.plantstore.plantstore.navigation.PlantListType
+import com.example.plantstore.plantstore.screen.detail.components.DetailHeader
+import com.example.plantstore.plantstore.screen.main.components.PlantCard
 import com.example.plantstore.plantstore.viewModel.MainViewModel
+import kotlinx.coroutines.flow.StateFlow
 
 @Composable
 fun ListPlantScreen(
     viewModel: MainViewModel = viewModel(),
-    title: String,
+    listType: PlantListType,
     onOpenDetail: (PlantModel) -> Unit,
     onBack: () -> Unit,
     onSetting: () -> Unit,
     onCart: () -> Unit
 ) {
-    val popularPlant by viewModel.listPopularPlant.collectAsState()
+    val plantsState: StateFlow<List<PlantModel>>
+    val title: String
+
+    when (listType) {
+        PlantListType.POPULAR -> {
+            plantsState = viewModel.listPopularPlant
+            title = "Популярные растения"
+        }
+        PlantListType.NEW -> {
+            plantsState = viewModel.listNewPlant
+            title = "Новинки"
+        }
+    }
+
+    val plants by plantsState.collectAsState()
 
     Scaffold(
         containerColor = Color.White
     ) { paddingValues ->
-        LazyColumn(
-            contentPadding = paddingValues,
-            modifier = Modifier
-                .padding(30.dp)
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(2),
+            contentPadding = PaddingValues(
+                top = paddingValues.calculateTopPadding(),
+                bottom = paddingValues.calculateBottomPadding(),
+                start = 30.dp,
+                end = 30.dp
+            ),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            item {
+            item(
+                span = { GridItemSpan(maxLineSpan) }
+            ) {
                 DetailHeader(
                     onBack = onBack,
                     onSetting = onSetting,
@@ -47,16 +76,21 @@ fun ListPlantScreen(
                 )
             }
 
-            item {
+            item(
+                span = { GridItemSpan(maxLineSpan) }
+            ) {
                 ListPlantName(
-                    title = title
+                    title = title,
+                    modifier = Modifier.padding(vertical = 14.dp)
                 )
             }
 
-            item {
-                ListPlant(
-                    items = popularPlant,
-                    onDetailClick = onOpenDetail
+            items(
+                items = plants
+            ) { plant ->
+                PlantCard(
+                    item = plant,
+                    onClick = { onOpenDetail(plant) }
                 )
             }
 
@@ -66,14 +100,27 @@ fun ListPlantScreen(
 
 @Composable
 fun ListPlantName(
-    title: String
+    title: String,
+    modifier: Modifier = Modifier
 ) {
     Text(
         text = title,
         fontWeight = FontWeight.Bold,
         fontSize = 20.sp,
-//        modifier = Modifier
-//            .padding(start = 40.dp, top = 30.dp, bottom = 30.dp)
+        modifier = modifier
     )
 
+}
+
+@Composable
+@Preview
+fun ListPlantScreenPreview() {
+    ListPlantScreen(
+        onOpenDetail = { },
+        onBack = {},
+        onSetting = {},
+        onCart = {},
+        viewModel = TODO(),
+        listType = TODO()
+    )
 }

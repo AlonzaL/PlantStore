@@ -14,6 +14,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.plantstore.plantstore.domain.PlantModel
+import com.example.plantstore.plantstore.screen.main.components.CategorySection
+import com.example.plantstore.plantstore.screen.main.components.PlantSection
+import com.example.plantstore.plantstore.screen.main.components.SearchSection
+import com.example.plantstore.plantstore.screen.main.components.HeaderSection
+import com.example.plantstore.plantstore.screen.main.components.TopBar
 import com.example.plantstore.plantstore.viewModel.MainViewModel
 
 @Composable
@@ -61,7 +66,7 @@ fun MainScreen(
                 Spacer(modifier = Modifier.height(12.dp))
             }
             item {
-                SectionHeader(
+                HeaderSection(
                     title = "Popular product",
                     onSeeAll = onSeeAllPopular
                 )
@@ -73,7 +78,7 @@ fun MainScreen(
                 )
             }
             item {
-                SectionHeader(
+                HeaderSection(
                     title = "New product",
                     onSeeAll = onSeeAllNew
                 )
@@ -85,7 +90,6 @@ fun MainScreen(
                 )
             }
         }
-
     }
 }
 

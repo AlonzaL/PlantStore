@@ -1,5 +1,6 @@
 package com.example.plantstore.plantstore.helper
 
+import com.example.plantstore.R
 import com.example.plantstore.plantstore.domain.PlantModel
 
 val previewPlant = PlantModel(
@@ -12,7 +13,7 @@ val previewPlant = PlantModel(
     HeightFlower = "2ft.",
     PotSize = "6 Inches",
     PotType = "Ceramic",
-    ImagePath = emptyList<String>(),
+    ImagePath = listOf("R.drawable.flower_1", "R.drawable.flower_2"),
     isFavorite = false,
     PopularPlant = false,
     NewPlant = false,
