@@ -1,9 +1,13 @@
 package com.example.plantstore.plantstore.screen.main
 
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -14,10 +18,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.plantstore.plantstore.domain.PlantModel
-import com.example.plantstore.plantstore.screen.main.components.CategorySection
-import com.example.plantstore.plantstore.screen.main.components.PlantSection
-import com.example.plantstore.plantstore.screen.main.components.SearchSection
+import com.example.plantstore.plantstore.screen.main.components.CategorySelector
 import com.example.plantstore.plantstore.screen.main.components.HeaderSection
+import com.example.plantstore.plantstore.screen.main.components.PlantCard
+import com.example.plantstore.plantstore.screen.main.components.SearchBar
 import com.example.plantstore.plantstore.screen.main.components.TopBar
 import com.example.plantstore.plantstore.viewModel.MainViewModel
 
@@ -30,64 +34,76 @@ fun MainScreen(
     onSeeAllPopular: () -> Unit,
     onSeeAllNew: () -> Unit
 ) {
-    val categories = listOf(
-        "Indoor",
-        "Outdoor",
-        "Artificial"
-    )
-
-    val popularPlant by viewModel.listPopularPlant.collectAsState()
-    val newPlant by viewModel.listNewPlant.collectAsState()
+    val popularPlants by viewModel.listPopularPlant.collectAsState()
+    val newPlants by viewModel.listNewPlant.collectAsState()
+    val searchQuery by viewModel.searchQuery.collectAsState()
+    val selectedCategory by viewModel.selectedCategory.collectAsState()
 
     Scaffold(
         containerColor = Color.White
     ) { paddingValues ->
         LazyColumn(
-            contentPadding = paddingValues,
             modifier = Modifier
-                .padding(30.dp)
+                .fillMaxSize()
+                .padding(paddingValues),
+            contentPadding = PaddingValues(bottom = 20.dp),
+            verticalArrangement = Arrangement.spacedBy(24.dp)
         ) {
             item {
                 TopBar(
-                    onCartClick = {},
+                    userName = "Alina",
+                    onCartClick = onCartClick,
                     onSettingsClick = onSettingsClick
                 )
-                //Spacer(modifier = Modifier.height(5.dp))
             }
 
             item {
-                CategorySection(
-                    categories = categories
-                )
-                Spacer(modifier = Modifier.height(15.dp))
-            }
-            item {
-                SearchSection()
-                Spacer(modifier = Modifier.height(12.dp))
-            }
-            item {
-                HeaderSection(
-                    title = "Popular product",
-                    onSeeAll = onSeeAllPopular
+                CategorySelector(
+                    categories = viewModel.categories,
+                    selectedCategory = selectedCategory,
+                    onCategoryClick = viewModel::onCategorySelect
                 )
             }
+
             item {
-                PlantSection(
-                    items = popularPlant,
-                    onClick = onOpenDetail
+                SearchBar(
+                    value = searchQuery,
+                    onValueChange = viewModel::onSearchQueryChange
                 )
             }
+
             item {
-                HeaderSection(
-                    title = "New product",
-                    onSeeAll = onSeeAllNew
-                )
+                Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+                    HeaderSection(
+                        title = "Popular products",
+                        onSeeAll = onSeeAllPopular
+                    )
+                    LazyRow(
+                        contentPadding = PaddingValues(horizontal = 24.dp),
+                        horizontalArrangement = Arrangement.spacedBy(16.dp)
+                    ) {
+                        items(popularPlants) { plant ->
+                            PlantCard(item = plant, onClick = { onOpenDetail(plant) })
+                        }
+                    }
+                }
             }
+
             item {
-                PlantSection(
-                    items = newPlant,
-                    onClick = onOpenDetail
-                )
+                Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+                    HeaderSection(
+                        title = "New arrivals",
+                        onSeeAll = onSeeAllNew
+                    )
+                    LazyRow(
+                        contentPadding = PaddingValues(horizontal = 24.dp),
+                        horizontalArrangement = Arrangement.spacedBy(16.dp)
+                    ) {
+                        items(newPlants) { plant ->
+                            PlantCard(item = plant, onClick = { onOpenDetail(plant) })
+                        }
+                    }
+                }
             }
         }
     }

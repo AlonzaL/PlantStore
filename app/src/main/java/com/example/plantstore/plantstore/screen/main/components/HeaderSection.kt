@@ -1,8 +1,11 @@
 package com.example.plantstore.plantstore.screen.main.components
 
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -15,42 +18,33 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.plantstore.R
+import com.example.plantstore.ui.theme.Black
+import com.example.plantstore.ui.theme.TextGray
 
 @Composable
 fun HeaderSection(
     title: String,
-    onSeeAll: (() -> Unit)?
+    onSeeAll: () -> Unit
 ) {
     Row(
         modifier = Modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .padding(horizontal = 24.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
             text = title,
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier
-                .weight(1f)
+            color = Black
         )
-        if (onSeeAll != null) {
-            TextButton(
-                onClick = onSeeAll
-            ) {
-                Text(
-                    text = "view all",
-                    color = colorResource(R.color.black),
-                    style = TextStyle(textDecoration = TextDecoration.Underline),
-                    modifier = Modifier
-                        .offset(x = 12.dp)
-                )
-            }
-        } else {
-            Text(
-                text = "view all",
-                color = colorResource(R.color.black),
-                style = TextStyle(textDecoration = TextDecoration.Underline)
-            )
-        }
+        Text(
+            text = "view all",
+            fontSize = 14.sp,
+            color = TextGray,
+            textDecoration = TextDecoration.Underline,
+            modifier = Modifier.clickable { onSeeAll() }
+        )
     }
 }
