@@ -23,13 +23,16 @@ import androidx.navigation.compose.rememberNavController
 import com.example.plantstore.plantstore.domain.PlantModel
 import com.example.plantstore.plantstore.viewModel.MainViewModel
 import com.example.plantstore.plantstore.navigation.NavGraph
+import com.example.plantstore.plantstore.repository.AuthRepository
+import com.example.plantstore.plantstore.repository.MainRepository
 import com.example.plantstore.plantstore.viewModel.AuthViewModel
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 
 class MainActivity : ComponentActivity() {
 
-    private val mainViewModel = MainViewModel()
+    private val mainRepository = MainRepository
+    private val mainViewModel = MainViewModel(mainRepository)
     private val authViewModel = AuthViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -88,7 +91,6 @@ fun MainFs() {
                             category = "Artificial",
                             description = "Indoor plants have many health and decorative benefits such as allergy relief, mood improvements, humidity increase in rooms, air purification, better sleep, stress release, or even better digestion. As medical science has made progress, more and more benefits of having indoor plants are being discovered.",
                             price = 17.0,
-                            priceId = 0,
                             heightFlower = "2ft.",
                             potSize = "6 Inches",
                             potType = "Ceramic",

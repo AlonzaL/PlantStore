@@ -8,7 +8,6 @@ val previewPlant = PlantModel(
     category = "Indoor",
     description = "la la la",
     price = 23.5,
-    priceId = 1,
     heightFlower = "2ft.",
     potSize = "6 Inches",
     potType = "Ceramic",
