@@ -22,7 +22,6 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.plantstore.plantstore.domain.PlantModel
 import com.example.plantstore.plantstore.navigation.PlantListType
-import com.example.plantstore.plantstore.screen.detail.components.DetailHeader
 import com.example.plantstore.plantstore.screen.main.components.PlantCard
 import com.example.plantstore.plantstore.viewModel.MainViewModel
 import kotlinx.coroutines.flow.StateFlow
@@ -69,11 +68,7 @@ fun ListPlantScreen(
             item(
                 span = { GridItemSpan(maxLineSpan) }
             ) {
-                DetailHeader(
-                    onBack = onBack,
-                    onSetting = onSetting,
-                    onCart = onCart
-                )
+
             }
 
             item(

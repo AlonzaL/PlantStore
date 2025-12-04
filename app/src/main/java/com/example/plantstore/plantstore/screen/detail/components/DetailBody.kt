@@ -1,5 +1,6 @@
 package com.example.plantstore.plantstore.screen.detail.components
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
@@ -16,81 +17,66 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.plantstore.R
 import com.example.plantstore.plantstore.domain.PlantModel
 import com.example.plantstore.plantstore.helper.previewPlant
+import com.example.plantstore.ui.theme.Black
+import com.example.plantstore.ui.theme.DarkGray
 
 @Composable
 fun DetailBody(
     item: PlantModel
 ) {
-
-    Column(
+    Row(
         modifier = Modifier
-            .padding(start = 40.dp, top = 25.dp)
+            .fillMaxWidth()
+            .padding(horizontal = 24.dp),
+        horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 28.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            StateColumn(
-                title = "Type",
-                value = item.category
-            )
-
-            StateColumn(
-                title = "Height",
-                value = item.heightFlower
-            )
-
-            StateColumn(
-                title = "Pot Size",
-                value = item.potSize
-            )
-
-            StateColumn(
-                title = "Pot Type",
-                value = item.potType
-            )
-
-        }
-
-        Text(
-            text = item.description,
-            color = colorResource(R.color.descr),
+        StateColumn(
+            title = "Type",
+            value = item.category
         )
+
+        StateColumn(
+            title = "Height",
+            value = item.heightFlower
+        )
+
+        StateColumn(
+            title = "Pot Size",
+            value = item.potSize
+        )
+
+        StateColumn(
+            title = "Pot Type",
+            value = item.potType
+        )
+
     }
-
 }
 
 @Composable
-@Preview
-fun DetailBodyPreview() {
-    DetailBody(
-        item = previewPlant
-    )
-}
-
-@Composable
-fun RowScope.StateColumn(
+fun StateColumn(
     title: String,
     value: String
 ) {
     Column(
-        modifier = Modifier
-            .weight(1f)
+        horizontalAlignment = Alignment.Start
     ) {
         Text(
             text = title,
-            textAlign = TextAlign.Center,
-            fontWeight = FontWeight.Bold
+            fontSize = 14.sp,
+            fontWeight = FontWeight.Bold,
+            color = Black
         )
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(4.dp))
         Text(
             text = value,
-            textAlign = TextAlign.Center
+            fontSize = 14.sp,
+            fontWeight = FontWeight.Normal,
+            color = DarkGray
         )
     }
 }

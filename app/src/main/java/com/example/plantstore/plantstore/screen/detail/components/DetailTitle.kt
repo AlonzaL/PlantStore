@@ -4,55 +4,44 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.plantstore.plantstore.domain.PlantModel
-import com.example.plantstore.plantstore.helper.previewPlant
+import com.example.plantstore.ui.theme.Black
+import com.example.plantstore.ui.theme.DarkGray
 
 @Composable
-fun DetailName(
-    item: PlantModel
+fun DetailTitle(
+    title: String,
+    category: String
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(
-                start = 40.dp
-            )
-            .statusBarsPadding(),
+            .padding(horizontal = 24.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Text(
-            text = item.title,
+            text = title,
             fontWeight = FontWeight.Bold,
-            fontSize = 20.sp
+            fontSize = 24.sp,
+            color = Black,
+            modifier = Modifier
+                .weight(1f)
         )
 
-        TextButton(
-            onClick = { }
-        ) {
-            Text(
-                text = item.category,
-                textDecoration = TextDecoration.Underline
-            )
-        }
+        Text(
+            text = category,
+            fontSize = 14.sp,
+            color = DarkGray,
+            textDecoration = TextDecoration.Underline,
+            fontWeight = FontWeight.Medium
+        )
     }
-}
-
-@Preview
-@Composable
-fun DetailNamePreview() {
-    DetailName(
-        item = previewPlant,
-    )
 }

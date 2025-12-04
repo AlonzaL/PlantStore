@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
@@ -26,92 +27,67 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.plantstore.R
+import com.example.plantstore.ui.theme.ActivePoint
+import com.example.plantstore.ui.theme.LightGreenBg
+import com.example.plantstore.ui.theme.NotActivePoint
 
 @Composable
 fun DetailImage(
     imagePath: String
 ) {
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(
-                color = colorResource(R.color.white)
-            )
-            .padding(
-                start = 40.dp,
-                end = 40.dp
-            )
+        modifier = Modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Box(
-            contentAlignment = Alignment.Center,
+            contentAlignment = Alignment.BottomCenter,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 50.dp)
+                .height(400.dp)
+                .padding(horizontal = 24.dp),
         ) {
-            Card(
+            Box(
                 modifier = Modifier
-                    .width(350.dp)
-                    .height(430.dp)
-                    .align(Alignment.BottomCenter)
-                    .background(
-                        shape = RoundedCornerShape(10.dp),
-                        color = colorResource(R.color.bg_card)
-                    ),
-                shape = RoundedCornerShape(10.dp),
-                backgroundColor = colorResource(R.color.bg_card),
-            ) {
-            }
+                    .fillMaxWidth()
+                    .height(380.dp)
+                    .clip(RoundedCornerShape(20.dp))
+                    .background(LightGreenBg)
+            )
             AsyncImage(
                 model = imagePath,
                 contentDescription = null,
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
                     .size(270.dp)
-                    .offset(y = (50).dp)
+                    .offset(y = (-20).dp)
                     .graphicsLayer(
                         // А потом визуально увеличивается в 3 раза
                         scaleX = 2f,
                         scaleY = 2f
                     )
             )
-//            Image(
-//                painter = painterResource(R.drawable.flower_2),
-//                contentDescription = null,
-//                contentScale = ContentScale.Fit,
-//                modifier = Modifier
-//                    .size(270.dp)
-//                    .offset(y = (50).dp)
-//                    .graphicsLayer(
-//                        // А потом визуально увеличивается в 3 раза
-//                        scaleX = 2f,
-//                        scaleY = 2f
-//                    )
-//            )
         }
 
+        Spacer(modifier = Modifier.height(50.dp))
+
         Row(
-            modifier = Modifier
-                .fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Box(
                 modifier = Modifier
-                    .padding(2.dp)
                     .size(10.dp)
                     .clip(CircleShape)
                     .background(
-                        color = Color.Gray
+                        color = ActivePoint
                     )
             )
             repeat(3) {
                 Box(
                     modifier = Modifier
-                        .padding(2.dp)
                         .size(10.dp)
                         .clip(CircleShape)
                         .background(
-                            color = Color.LightGray
+                            color = NotActivePoint
                         )
                 )
             }

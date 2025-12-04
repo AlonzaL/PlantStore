@@ -16,3 +16,6 @@ val TextGray = Color(0xFFAAAAAA) // Цвет неактивных элемент
 val SearchBg = Color(0xFFF3F3F3) // Фон поиска
 val Black = Color(0xFF000000)
 val Favorite = Color(0xFFA2DF88) // Цвет like
+val DarkGray = Color(0xFF555555)
+val ActivePoint = Color(0xFF8ECB71)
+val NotActivePoint = Color(0xFFD9D9D9)
