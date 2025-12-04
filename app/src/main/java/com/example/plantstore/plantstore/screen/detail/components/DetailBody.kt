@@ -37,28 +37,28 @@ fun DetailBody(
         ) {
             StateColumn(
                 title = "Type",
-                value = item.Category
+                value = item.category
             )
 
             StateColumn(
                 title = "Height",
-                value = item.HeightFlower
+                value = item.heightFlower
             )
 
             StateColumn(
                 title = "Pot Size",
-                value = item.PotSize
+                value = item.potSize
             )
 
             StateColumn(
                 title = "Pot Type",
-                value = item.PotType
+                value = item.potType
             )
 
         }
 
         Text(
-            text = item.Description,
+            text = item.description,
             color = colorResource(R.color.descr),
         )
     }

@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -58,7 +57,7 @@ fun PlantCard(
                 contentAlignment = Alignment.Center
             ) {
                 AsyncImage(
-                    model = item.ImagePath[1],
+                    model = item.imagePath[1],
                     contentDescription = null,
                     modifier = Modifier
                         .fillMaxSize(),
@@ -68,7 +67,7 @@ fun PlantCard(
             }
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = item.Title,
+                text = item.title,
                 color = colorResource(R.color.black),
                 fontSize = 16.sp,
                 maxLines = 2
@@ -76,7 +75,7 @@ fun PlantCard(
             Spacer(modifier = Modifier.height(9.dp))
 
             Text(
-                text = "$ ${(item.Price)}",
+                text = "$ ${(item.price)}",
                 color = colorResource(R.color.price),
                 fontSize = 16.sp,
                 maxLines = 2

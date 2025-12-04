@@ -1,21 +1,20 @@
 package com.example.plantstore.plantstore.helper
 
-import com.example.plantstore.R
 import com.example.plantstore.plantstore.domain.PlantModel
 
 val previewPlant = PlantModel(
-    Id = 1,
-    Title = "Plant",
-    Category = "Indoor",
-    Description = "la la la",
-    Price = 23.5,
-    PriceId = 1,
-    HeightFlower = "2ft.",
-    PotSize = "6 Inches",
-    PotType = "Ceramic",
-    ImagePath = listOf("R.drawable.flower_1", "R.drawable.flower_2"),
+    id = 1,
+    title = "Plant",
+    category = "Indoor",
+    description = "la la la",
+    price = 23.5,
+    priceId = 1,
+    heightFlower = "2ft.",
+    potSize = "6 Inches",
+    potType = "Ceramic",
+    imagePath = listOf("R.drawable.flower_1", "R.drawable.flower_2"),
     isFavorite = false,
-    PopularPlant = false,
-    NewPlant = false,
+    isPopular = false,
+    isNew = false,
     numberInCart = 1
 )

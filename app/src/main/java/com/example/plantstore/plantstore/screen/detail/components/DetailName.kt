@@ -33,7 +33,7 @@ fun DetailName(
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Text(
-            text = item.Title,
+            text = item.title,
             fontWeight = FontWeight.Bold,
             fontSize = 20.sp
         )
@@ -42,7 +42,7 @@ fun DetailName(
             onClick = { }
         ) {
             Text(
-                text = item.Category,
+                text = item.category,
                 textDecoration = TextDecoration.Underline
             )
         }

@@ -20,7 +20,7 @@ fun DetailScreen(
 ) {
     Scaffold(
         containerColor = Color.White,
-        bottomBar = { DetailBottomBar(item.Price) }
+        bottomBar = { DetailBottomBar(item.price) }
     ) { paddingValues ->
         LazyColumn(
             contentPadding = paddingValues
@@ -44,7 +44,7 @@ fun DetailScreen(
 
             item {
                 DetailImage(
-                    imagePath = item.ImagePath[1]
+                    imagePath = item.imagePath[1]
                 )
             }
 
