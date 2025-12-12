@@ -1,5 +1,6 @@
 package com.example.plantstore.plantstore.navigation
 
+import android.util.Log
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
@@ -106,7 +107,8 @@ fun NavGraph(
                 },
                 onBack = { navController.popBackStack() },
                 onSetting = { },
-                onCart = { }
+                onCart = { },
+                viewModel = mainViewModel
             )
         }
 
@@ -122,9 +124,11 @@ fun NavGraph(
                     navController.navigate(Screen.Setting.route)
                 },
                 onSeeAllNew = {
+                    Log.d("NAVIGATION", "Click received inside NavGraph! New") // Проверка
                     navController.navigate(Screen.ListPlant.createRoute(PlantListType.NEW))
                 },
                 onSeeAllPopular = {
+                    Log.d("NAVIGATION", "Click received inside NavGraph!") // Проверка
                     navController.navigate(Screen.ListPlant.createRoute(PlantListType.POPULAR))
                 }
             )

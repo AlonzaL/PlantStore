@@ -17,11 +17,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.plantstore.plantstore.domain.PlantModel
 import com.example.plantstore.plantstore.helper.previewPlant
+import com.example.plantstore.plantstore.screen.common.CommonTopBar
 import com.example.plantstore.plantstore.screen.detail.components.DetailBody
 import com.example.plantstore.plantstore.screen.detail.components.DetailBottomBar
 import com.example.plantstore.plantstore.screen.detail.components.DetailImage
 import com.example.plantstore.plantstore.screen.detail.components.DetailTitle
-import com.example.plantstore.plantstore.screen.detail.components.DetailTopBar
 import com.example.plantstore.ui.theme.TextGray
 
 @Composable
@@ -32,7 +32,7 @@ fun DetailScreen(
     Scaffold(
         containerColor = Color.White,
         topBar = {
-            DetailTopBar(
+            CommonTopBar(
                 onBack = onBack,
                 onCart = { },
                 onSetting = { }
