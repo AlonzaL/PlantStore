@@ -124,7 +124,7 @@ fun WelcomeScreen(
             }
 
             Button(
-                onClick = onSignUp,
+                onClick = { onLogIn() },
                 border = BorderStroke(2.dp, Color.Black),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color.White,
@@ -132,7 +132,7 @@ fun WelcomeScreen(
                 )
             ) {
                 Text(
-                    text = "Create account",
+                    text = "Log in",
                     fontWeight = FontWeight.Bold,
                     fontSize = 14.sp
                 )
@@ -144,10 +144,10 @@ fun WelcomeScreen(
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = "Log in",
+                    text = "Create account",
                     color = colorResource(R.color.price),
                     modifier = Modifier
-                        .clickable { onLogIn() }
+                        .clickable { onSignUp() }
                 )
             }
         }
