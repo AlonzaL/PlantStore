@@ -8,6 +8,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -158,6 +159,7 @@ fun NavGraph(
             if (plant != null) {
                 DetailScreen(
                     item = plant,
+                    viewModel = mainViewModel,
                     onBack = { navController.popBackStack() }
                 )
             } else {

@@ -10,6 +10,9 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
@@ -22,13 +25,24 @@ import com.example.plantstore.plantstore.screen.detail.components.DetailBody
 import com.example.plantstore.plantstore.screen.detail.components.DetailBottomBar
 import com.example.plantstore.plantstore.screen.detail.components.DetailImage
 import com.example.plantstore.plantstore.screen.detail.components.DetailTitle
+import com.example.plantstore.plantstore.viewModel.MainViewModel
 import com.example.plantstore.ui.theme.TextGray
 
 @Composable
 fun DetailScreen(
     item: PlantModel,
+    viewModel: MainViewModel,
     onBack: () -> Unit
 ) {
+    val popularPlants by viewModel.listPopularPlant.collectAsState()
+    val newPlants by viewModel.listNewPlant.collectAsState()
+
+    val actualItem = remember(popularPlants, newPlants) {
+        popularPlants.find { it.id == item.id }
+            ?: newPlants.find { it.id == item.id }
+            ?: item
+    }
+
     Scaffold(
         containerColor = Color.White,
         topBar = {
@@ -41,6 +55,8 @@ fun DetailScreen(
         bottomBar = {
             DetailBottomBar(
                 price = item.price,
+                isFavorite = actualItem.isFavorite,
+                onFavoriteClick = { viewModel.onFavoriteClick(actualItem) },
                 onAddToCart = { }
             )
         }
@@ -52,23 +68,23 @@ fun DetailScreen(
                 .verticalScroll(rememberScrollState())
         ) {
             DetailTitle(
-                title = item.title,
-                category = item.category
+                title = actualItem.title,
+                category = actualItem.category
             )
             Spacer(modifier = Modifier.height(24.dp))
 
             DetailImage(
-                imagePath = item.imagePath[1] ?: ""
+                imagePath = actualItem.imagePath[1] ?: ""
             )
             Spacer(modifier = Modifier.height(32.dp))
 
             DetailBody(
-                item = item
+                item = actualItem
             )
             Spacer(modifier = Modifier.height(32.dp))
 
             Text(
-                text = item.description,
+                text = actualItem.description,
                 color = TextGray,
                 fontSize = 14.sp,
                 lineHeight = 22.sp,
@@ -77,14 +93,4 @@ fun DetailScreen(
             Spacer(modifier = Modifier.height(24.dp))
         }
     }
-}
-
-@Preview
-@Composable
-fun DetailScreenPreview() {
-    val item = previewPlant
-    DetailScreen(
-        item = item,
-        onBack = {}
-    )
 }

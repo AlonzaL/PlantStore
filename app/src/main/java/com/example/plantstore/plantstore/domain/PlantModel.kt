@@ -4,28 +4,29 @@ import com.google.firebase.firestore.PropertyName
 import java.io.Serializable
 
 data class PlantModel(
-    @get:PropertyName("Id")
-    val id: Int = 0,
-    @get:PropertyName("Title")
-    val title: String = "",
-    @get:PropertyName("Category")
-    val category: String = "",
-    @get:PropertyName("Description")
-    val description: String = "",
-    @get:PropertyName("Price")
-    val price: Double = 0.0,
-    @get:PropertyName("HeightFlower")
-    val heightFlower: String = "",
-    @get:PropertyName("PotSize")
-    val potSize: String = "",
-    @get:PropertyName("PotType")
-    val potType: String = "",
-    @get:PropertyName("ImagePath")
-    val imagePath: List<String> = emptyList<String>(),
+    @get:PropertyName("id") @set:PropertyName("id")
+    var id: Int = 0,
+    @get:PropertyName("title") @set:PropertyName("title")
+    var title: String = "",
+    @get:PropertyName("category") @set:PropertyName("category")
+    var category: String = "",
+    @get:PropertyName("description") @set:PropertyName("description")
+    var description: String = "",
+    @get:PropertyName("price") @set:PropertyName("price")
+    var price: Double = 0.0,
+    @get:PropertyName("heightFlower") @set:PropertyName("heightFlower")
+    var heightFlower: String = "",
+    @get:PropertyName("potSize") @set:PropertyName("potSize")
+    var potSize: String = "",
+    @get:PropertyName("potType") @set:PropertyName("potType")
+    var potType: String = "",
+    @get:PropertyName("iImagePath") @set:PropertyName("imagePath")
+    var imagePath: List<String> = emptyList<String>(),
     val isFavorite: Boolean = false,
-    @get:PropertyName("PopularPlant")
+    @get:PropertyName("popularPlant")
     val isPopular: Boolean = false,
-    @get:PropertyName("NewPlant")
+    @get:PropertyName("newPlant")
     val isNew: Boolean = false,
-    val numberInCart: Int = 0
+    @get:PropertyName("numberInCart") @set:PropertyName("numberInCart")
+    var numberInCart: Int = 0
 ) : Serializable

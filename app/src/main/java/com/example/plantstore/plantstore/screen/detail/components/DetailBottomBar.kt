@@ -18,6 +18,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonDefaults
+import androidx.compose.material3.OutlinedIconButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,11 +33,14 @@ import androidx.compose.ui.unit.sp
 import com.example.plantstore.R
 import com.example.plantstore.ui.theme.Black
 import com.example.plantstore.ui.theme.DarkGreen
+import com.example.plantstore.ui.theme.Favorite
 import com.example.plantstore.ui.theme.TextGray
 
 @Composable
 fun DetailBottomBar(
     price: Double,
+    isFavorite: Boolean,
+    onFavoriteClick: () -> Unit,
     onAddToCart: () -> Unit
 ) {
     Surface(
@@ -71,14 +76,17 @@ fun DetailBottomBar(
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 IconButton(
-                    onClick = {}
+                    onClick = onFavoriteClick,
+                    colors = IconButtonDefaults.outlinedIconButtonColors(
+                        containerColor = if (isFavorite) Color(0xFF9BC09B) else Color.Transparent
+                    )
                 ) {
                     Icon(
-                        painter = painterResource(R.drawable.fav),
+                        painter = painterResource(id = if (isFavorite) R.drawable.fav_filled else R.drawable.fav),
                         contentDescription = "Fav",
                         modifier = Modifier
                             .size(44.dp),
-                        tint = TextGray
+                        tint = if (isFavorite) Favorite else TextGray
                     )
                 }
                 IconButton(

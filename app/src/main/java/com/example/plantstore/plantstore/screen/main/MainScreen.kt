@@ -20,7 +20,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.plantstore.plantstore.domain.PlantModel
 import com.example.plantstore.plantstore.screen.main.components.CategorySelector
 import com.example.plantstore.plantstore.screen.main.components.HeaderSection
-import com.example.plantstore.plantstore.screen.main.components.PlantCard
+import com.example.plantstore.plantstore.screen.common.PlantCard
 import com.example.plantstore.plantstore.screen.main.components.SearchBar
 import com.example.plantstore.plantstore.screen.main.components.MainTopBar
 import com.example.plantstore.plantstore.viewModel.MainViewModel
@@ -83,7 +83,11 @@ fun MainScreen(
                         horizontalArrangement = Arrangement.spacedBy(16.dp)
                     ) {
                         items(popularPlants) { plant ->
-                            PlantCard(item = plant, onClick = { onOpenDetail(plant) })
+                            PlantCard(
+                                item = plant,
+                                onClick = { onOpenDetail(plant) },
+                                onFavoriteClick = { viewModel.onFavoriteClick(plant) }
+                            )
                         }
                     }
                 }
@@ -100,7 +104,11 @@ fun MainScreen(
                         horizontalArrangement = Arrangement.spacedBy(16.dp)
                     ) {
                         items(newPlants) { plant ->
-                            PlantCard(item = plant, onClick = { onOpenDetail(plant) })
+                            PlantCard(
+                                item = plant,
+                                onClick = { onOpenDetail(plant) },
+                                onFavoriteClick = { viewModel.onFavoriteClick(plant) }
+                            )
                         }
                     }
                 }
