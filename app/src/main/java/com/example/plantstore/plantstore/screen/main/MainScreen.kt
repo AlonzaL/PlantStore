@@ -22,7 +22,7 @@ import com.example.plantstore.plantstore.screen.main.components.CategorySelector
 import com.example.plantstore.plantstore.screen.main.components.HeaderSection
 import com.example.plantstore.plantstore.screen.main.components.PlantCard
 import com.example.plantstore.plantstore.screen.main.components.SearchBar
-import com.example.plantstore.plantstore.screen.main.components.TopBar
+import com.example.plantstore.plantstore.screen.main.components.MainTopBar
 import com.example.plantstore.plantstore.viewModel.MainViewModel
 
 @Composable
@@ -40,7 +40,14 @@ fun MainScreen(
     val selectedCategory by viewModel.selectedCategory.collectAsState()
 
     Scaffold(
-        containerColor = Color.White
+        containerColor = Color.White,
+        topBar = {
+            MainTopBar(
+                userName = "Alina",
+                onCartClick = onCartClick,
+                onSettingsClick = onSettingsClick
+            )
+        }
     ) { paddingValues ->
         LazyColumn(
             modifier = Modifier
@@ -49,13 +56,6 @@ fun MainScreen(
             contentPadding = PaddingValues(bottom = 20.dp),
             verticalArrangement = Arrangement.spacedBy(24.dp)
         ) {
-            item {
-                TopBar(
-                    userName = "Alina",
-                    onCartClick = onCartClick,
-                    onSettingsClick = onSettingsClick
-                )
-            }
 
             item {
                 CategorySelector(
@@ -76,7 +76,7 @@ fun MainScreen(
                 Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
                     HeaderSection(
                         title = "Popular products",
-                        onSeeAll = onSeeAllPopular
+                        onSeeAll = { onSeeAllPopular() }
                     )
                     LazyRow(
                         contentPadding = PaddingValues(horizontal = 24.dp),
