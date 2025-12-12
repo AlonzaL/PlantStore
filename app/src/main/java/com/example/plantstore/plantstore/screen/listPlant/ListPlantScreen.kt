@@ -2,6 +2,8 @@ package com.example.plantstore.plantstore.screen.listPlant
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -22,37 +24,38 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.plantstore.plantstore.domain.PlantModel
 import com.example.plantstore.plantstore.navigation.PlantListType
+import com.example.plantstore.plantstore.screen.common.CommonTopBar
 import com.example.plantstore.plantstore.screen.main.components.PlantCard
 import com.example.plantstore.plantstore.viewModel.MainViewModel
 import kotlinx.coroutines.flow.StateFlow
 
 @Composable
 fun ListPlantScreen(
-    viewModel: MainViewModel = viewModel(),
+    viewModel: MainViewModel,
     listType: PlantListType,
     onOpenDetail: (PlantModel) -> Unit,
     onBack: () -> Unit,
     onSetting: () -> Unit,
     onCart: () -> Unit
 ) {
-    val plantsState: StateFlow<List<PlantModel>>
-    val title: String
 
-    when (listType) {
-        PlantListType.POPULAR -> {
-            plantsState = viewModel.listPopularPlant
-            title = "Популярные растения"
-        }
-        PlantListType.NEW -> {
-            plantsState = viewModel.listNewPlant
-            title = "Новинки"
-        }
+    val plants by if (listType == PlantListType.POPULAR) {
+        viewModel.listPopularPlant.collectAsState()
+    } else {
+        viewModel.listNewPlant.collectAsState()
     }
 
-    val plants by plantsState.collectAsState()
+    val title = if (listType == PlantListType.POPULAR) "Popular Products" else "New Arrivals"
 
     Scaffold(
-        containerColor = Color.White
+        containerColor = Color.White,
+        topBar = {
+            CommonTopBar(
+                onBack = onBack,
+                onCart = onCart,
+                onSetting = onSetting
+            )
+        }
     ) { paddingValues ->
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
@@ -65,18 +68,13 @@ fun ListPlantScreen(
             verticalArrangement = Arrangement.spacedBy(16.dp),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            item(
-                span = { GridItemSpan(maxLineSpan) }
-            ) {
-
-            }
-
-            item(
-                span = { GridItemSpan(maxLineSpan) }
-            ) {
-                ListPlantName(
-                    title = title,
-                    modifier = Modifier.padding(vertical = 14.dp)
+            item(span = { GridItemSpan(2) }) {
+                Text(
+                    text = title,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 24.sp,
+                    color = Color.Black,
+                    modifier = Modifier.padding(bottom = 16.dp, top = 8.dp)
                 )
             }
 
@@ -105,17 +103,4 @@ fun ListPlantName(
         modifier = modifier
     )
 
-}
-
-@Composable
-@Preview
-fun ListPlantScreenPreview() {
-    ListPlantScreen(
-        onOpenDetail = { },
-        onBack = {},
-        onSetting = {},
-        onCart = {},
-        viewModel = TODO(),
-        listType = TODO()
-    )
 }
