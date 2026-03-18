@@ -103,6 +103,7 @@ com.example.plantstore.plantstore
     ├── PlantCard.kt        # Карточка товара
     ├── TopBars.kt          # Универсальные верхние панели
     └── ...
+```
 
 ## 🚧 Планы по развитию
 
